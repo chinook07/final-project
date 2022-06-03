@@ -14,10 +14,11 @@ const logEmployee = async (req, res) => {
     console.log("connected!");
 
     const { user } = req.body;
+    console.log(user);
 
     const staff = await db.collection("employees").find().toArray();
     const result = staff.find((item) => item.username == user) || null
-    console.log(JSON.stringify(result));
+    console.log(result);
     
     await client.close();
     console.log("disconnected!");
@@ -59,7 +60,17 @@ const getExhibit = async (req, res) => {
 }
 
 const getExhibits = async (req, res) => {
-    console.log("something");
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db();
+    console.log("connected!");
+
+    const assets = await db.collection("assets").find().toArray();
+    
+    await client.close();
+    console.log("disconnected!");
+
+    return res.status(200).json({ status: 200, assets, message: "Here are all your employees." });
 }
 
 const birthDino = async (req, res) => {

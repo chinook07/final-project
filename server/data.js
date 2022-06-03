@@ -22,16 +22,16 @@ const assets = [
 		"species" : "Dilophosaurus",
 		"population" : 7,
 		"dangerLevel" : "high",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
-				{"time" : "2022-06-02 08:55", "employee" : "Thomas Wade"}
+				{"time" : "2022-06-05 16:04", "employee" : "Dennis Nordry"},
+				{"time" : "2022-05-31 14:20", "employee" : "Thomas Wade"}
 			],
 		"lastFeedings" :
 			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
+				{"time" : "2022-06-10 10:00", "employee" : "automated", "portion" : "regular"},
+				{"time" : "2022-06-09 13:00", "employee" : "automated", "portion" : "regular"}
 			],
 		"currentlyOpenToVisitors" : true
     },
@@ -41,7 +41,7 @@ const assets = [
 		"species" : "Tyrannosaurus rex",
 		"population" : 2,
 		"dangerLevel" : "high",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
 				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
@@ -60,17 +60,17 @@ const assets = [
 		"species" : "Triceratops",
 		"population" : 13,
 		"dangerLevel" : "low",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
-				{"time" : "2022-06-02 08:55", "employee" : "Thomas Wade"}
+				{"time" : "2022-06-10 12:54", "employee" : "Filip De Sousa"},
+				{"time" : "2022-06-07 11:12", "employee" : "Craig Scotch"}
 			],
-		"lastFeedings" :
-			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
-			],
+		// "lastFeedings" :
+		// 	[
+		// 		{"time" : "2022-06-10 09:36", "employee" : "pzoghbi", "portion" : "regular"},
+		// 		{"time" : "2022-06-08 14:32", "employee" : "pzoghbi", "portion" : "regular"}
+		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -79,17 +79,17 @@ const assets = [
 		"species" : "Brachiosaurus",
 		"population" : 11,
 		"dangerLevel" : "low",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
-				{"time" : "2022-06-02 08:55", "employee" : "Thomas Wade"}
+				{"time" : "2022-06-10 07:57", "employee" : "Elizabeth Jenkins"},
+				{"time" : "2022-06-07 08:31", "employee" : "Craig Scotch"}
 			],
-		"lastFeedings" :
-			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
-			],
+		// "lastFeedings" :
+		// 	[
+		// 		{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
+		// 		{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
+		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -98,17 +98,17 @@ const assets = [
 		"species" : "Gallimimus",
 		"population" : 26,
 		"dangerLevel" : "low",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
-				{"time" : "2022-06-02 08:55", "employee" : "Thomas Wade"}
+				{"time" : "2022-06-06 12:58", "employee" : "Paula Corazon"},
+				{"time" : "2022-06-01 16:20", "employee" : "Glenn Smith"}
 			],
-		"lastFeedings" :
-			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
-			],
+		// "lastFeedings" :
+		// 	[
+		// 		{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
+		// 		{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
+		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -117,16 +117,16 @@ const assets = [
 		"species" : "Velociraptor",
 		"population" : 12,
 		"dangerLevel" : "high",
-		"fenceActive" : [ {"west" : true}, {"south" : true}, {"north" : true} ],
+		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-10 14:23", "employee" : "Elizabeth Jenkins"},
-				{"time" : "2022-06-02 08:55", "employee" : "Thomas Wade"}
+				{"time" : "2022-06-02 04:26", "employee" : "George Newhouse"},
+				{"time" : "2022-05-26 05:36", "employee" : "Deeneaus Pollack"}
 			],
 		"lastFeedings" :
 			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
+				{"time" : "2022-06-10 16:00", "employee" : "automated", "portion" : "regular"},
+				{"time" : "2022-06-09 16:00", "employee" : "automated", "portion" : "regular"}
 			],
 		"currentlyOpenToVisitors" : true
     }
