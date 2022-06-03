@@ -51,6 +51,10 @@ const Wrapper = styled.div`
 
 const StatusOpen = styled.div`
     background-color: var(--colour-light);
+    color: var(--colour-dark);
+    font-size: 30px;
+    padding: 15px;
+    text-align: center;
 `
 
 const TableRow = styled.div``
