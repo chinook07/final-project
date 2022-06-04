@@ -1,19 +1,13 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import Spinner from "../littleComponents/Spinner";
+
+import { DinoContext } from "../DinoContext";
 import LogForm from "../littleComponents/LogForm";
+import Spinner from "../littleComponents/Spinner";
 
 const Population = () => {
 
-    const [assets, setAssets] = useState([])
-    const [value, setValue] = useState(0);
-
-    useEffect(() => {
-        fetch("/api/get-exhibits")
-            .then(res => res.json())
-            .then(data => setAssets(data.assets))
-        .catch(err => console.log(err))
-    }, [value])
+    const { assets, ready, update, setUpdate } = useContext(DinoContext);
 
     const addDino = (item) => {
         fetch(`/api/birth-dino`, {
@@ -26,7 +20,7 @@ const Population = () => {
         })
             .then(res => res.json())
             .then((data) => console.log(data))
-            .then(() => setValue(value + 1))
+            .then(() => setUpdate(update + 1))
     }
 
     const removeDino = (item) => {
@@ -40,7 +34,7 @@ const Population = () => {
         })
             .then(res => res.json())
             .then((data) => console.log(data))
-            .then(() => setValue(value + 1))
+            .then(() => setUpdate(update + 1))
     }
 
     const feed = (item) => {
@@ -53,10 +47,8 @@ const Population = () => {
 
     console.log(assets);
 
-    if (assets.length == 0) {
-        return <Spinner />
-    } else {
-
+    if (ready) {
+        
         let countOfDinos = 0;
         assets.map(element => countOfDinos += element.population)
 
@@ -95,6 +87,10 @@ const Population = () => {
                 </PopTable>
             </Wrapper>
         )
+    } else {
+
+        return <Spinner />
+
     }
 
 

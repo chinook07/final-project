@@ -1,39 +1,29 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+
+import { DinoContext } from "../DinoContext";
 import Spinner from "../littleComponents/Spinner";
 
 const Visitors = () => {
 
-    const [assets, setAssets] = useState([])
-    const [value, setValue] = useState(0);
-
-    useEffect(() => {
-        fetch("/api/get-exhibits")
-            .then(res => res.json())
-            .then(data => setAssets(data.assets))
-        .catch(err => console.log(err))
-    }, [value])
+    const { assets, ready, update, setUpdate } = useContext(DinoContext);
 
     const turnOnOff = (id) => {
-        console.log(id);
         fetch(`/api/toggle-visitor/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            },
-            // body: JSON.stringify({dinoName: item.species, currentNum: item.population})
+            }
         })
             .then(res => res.json())
             .then((data) => console.log(data))
-            .then(() => setValue(value + 1))
+            .then(() => setUpdate(update + 1))
     }
 
     console.log(assets);
 
-    if (assets.length == 0) {
-        return <Spinner />
-    } else {
+    if (ready) {
 
         let closedExhibits = 0;
 
@@ -76,6 +66,8 @@ const Visitors = () => {
                 </table>
             </Wrapper>
         )
+    } else {
+        return <Spinner />
     }
     
 }
