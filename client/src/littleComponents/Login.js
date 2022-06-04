@@ -82,12 +82,12 @@ const LogIn = styled.form`
         display: flex;
         flex-direction: column;
         input {
-            background-color: var(--colour-yellow);
+            background-color: var(--c-yellow);
             padding: 5px;
         }
         button {
-            background-color: var(--colour-dark);
-            color: var(--colour-light);
+            background-color: var(--c-dark);
+            color: var(--c-light);
             padding: 5px;
         }
     }

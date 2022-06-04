@@ -13,8 +13,8 @@ const Header = () => {
 
 const Wrapper = styled.header`
     align-items: center;
-    background-color: var(--colour-gray);
-    color: var(--colour-light);
+    background-color: var(--c-gray);
+    color: var(--c-light);
     display: flex;
     height: 60px;
     justify-content: space-between;

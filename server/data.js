@@ -15,6 +15,19 @@ const employees = [
     { _id: "197", username : "imalcolm", password : "magicWord!Ah1", admin : false},
 ]
 
+const vets = [
+    {_id: 1, "name" : "automated"},
+    {_id: 2, "name" : "Craig Scotch"},
+    {_id: 3, "name" : "Deeneaus Pollack"},
+    {_id: 4, "name" : "Dennis Nordry"},
+    {_id: 5, "name" : "Elizabeth Jenkins"},
+    {_id: 6, "name" : "Filip De Sousa"},
+    {_id: 7, "name" : "George Newhouse"},
+    {_id: 8, "name" : "Glenn Smith"},
+    {_id: 9, "name" : "Paula Corazon"},
+    {_id: 10, "name" : "Thomas Wade"}
+]
+
 const assets = [
 	{
 		_id: 1,
@@ -132,4 +145,4 @@ const assets = [
     }
 ]
 
-module.exports = {employees, assets}
+module.exports = {employees, assets, vets}

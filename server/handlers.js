@@ -65,7 +65,7 @@ const getExhibits = async (req, res) => {
     const db = client.db();
     console.log("connected!");
 
-    const assets = await db.collection("assets").find().toArray();
+    const assets= await db.collection("assets").find().toArray();
     
     await client.close();
     console.log("disconnected!");
@@ -74,11 +74,55 @@ const getExhibits = async (req, res) => {
 }
 
 const birthDino = async (req, res) => {
-    console.log("something");
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db();
+    console.log("connected!");
+
+    const { dinoName, currentNum } = req.body;
+
+    await db.collection("assets").updateOne({species: dinoName},{$set: {"population" : currentNum + 1}});
+
+    await client.close();
+    console.log("disconnected!");
+
+    return res.status(200).json({ status: 200, message: `Congratulations. You now have a new ${dinoName}.` });
 }
 
 const deathDino = async (req, res) => {
-    console.log("something");
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db();
+    console.log("connected!");
+
+    const { dinoName, currentNum } = req.body;
+
+    await db.collection("assets").updateOne({species: dinoName},{$set: {"population" : currentNum - 1}});
+
+    await client.close();
+    console.log("disconnected!");
+
+    return res.status(200).json({ status: 200, message: `${dinoName} will be missed.` });
+}
+
+const toggleVisitor = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db();
+    console.log("connected!");
+
+    const { id } = req.params;
+
+    const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
+
+    toUpdate.currentlyOpenToVisitors == true
+        ? await db.collection("assets").updateOne(toUpdate, { $set: { "currentlyOpenToVisitors": false } })
+        : await db.collection("assets").updateOne(toUpdate, { $set: { "currentlyOpenToVisitors": true } })
+
+    await client.close();
+    console.log("disconnected!");
+
+    return res.status(200).json({ status: 200, message: `${toUpdate.name} has been turned to ${toUpdate.currentlyOpenToVisitors}` });
 }
 
 const toggleFence = async (req, res) => {
@@ -95,5 +139,6 @@ module.exports = {
     getExhibits,
     birthDino,
     deathDino,
+    toggleVisitor,
     toggleFence
 };

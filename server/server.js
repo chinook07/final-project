@@ -13,6 +13,7 @@ const {
     getExhibits,
     birthDino,
     deathDino,
+    toggleVisitor,
     toggleFence
 } = require("./handlers");
 
@@ -32,9 +33,10 @@ express()
     .get("/api/get-exhibit/:id", getExhibit)
     .get("/api/get-exhibits", getExhibits)
 
-    .post("/api/birth-dino", birthDino)
-    .delete("/api/death-dino", deathDino)
+    .patch("/api/birth-dino", birthDino)
+    .patch("/api/death-dino", deathDino)
     
+    .patch("/api/toggle-visitor/:id", toggleVisitor)
     .patch("/api/toggle-fence", toggleFence)
 
     //...

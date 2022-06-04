@@ -17,7 +17,7 @@ const Nav = () => {
 
 const Wrapper = styled.nav`
     align-items: center;
-    background-color: var(--colour-yellow);
+    background-color: var(--c-yellow);
     display: flex;
     height: 60px;
     justify-content: space-around;

@@ -9,12 +9,12 @@ export default createGlobalStyle`
         font-display: auto;
     } */
     :root {
-        --colour-blue: #3F5F8E;
-        --colour-gray: #292826;
-        --colour-red: #e23123;
-        --colour-dark: #180806;
-        --colour-yellow: #f0b83e;
-        --colour-light: #DCD9D2;
+        --c-blue: #3F5F8E;
+        --c-gray: #292826;
+        --c-red: #e23123;
+        --c-dark: #180806;
+        --c-yellow: #f0b83e;
+        --c-light: #DCD9D2;
         /* --font-jurassic:  */
     }
     * {

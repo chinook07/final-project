@@ -21,10 +21,10 @@ const Wrapper = styled.main`
 `
 
 const Message = styled.div`
-    background-color: var(--colour-red);
-    border: 1px solid var(--colour-yellow);
+    background-color: var(--c-red);
+    border: 1px solid var(--c-yellow);
     border-radius: 5px;
-    color: var(--colour-light);
+    color: var(--c-light);
     left: 50%;
     padding: 30px;
     position: absolute;

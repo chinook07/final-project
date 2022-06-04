@@ -15,8 +15,8 @@ const Footer = () => {
 
 const Wrapper = styled.footer`
     align-items: center;
-    background-color: var(--colour-blue);
-    color: var(--colour-yellow);
+    background-color: var(--c-blue);
+    color: var(--c-yellow);
     display: flex;
     height: 60px;
     justify-content: space-between;
