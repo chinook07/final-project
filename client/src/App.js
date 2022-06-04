@@ -19,7 +19,7 @@ function App() {
             <GlobalStyles />
             <Header />
             <Nav />
-            <Main>
+            <Wrapper>
                 <Switch>
                     <Route exact path="/">
                         <Home />
@@ -40,13 +40,13 @@ function App() {
                         <Error />
                     </Route>
                 </Switch>
-            </Main>
+            </Wrapper>
             <Footer />
         </BrowserRouter>
     );
 }
 
-const Main = styled.main`
+const Wrapper = styled.div`
     min-height: calc(100vh - 180px);
 `
 

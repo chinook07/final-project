@@ -28,43 +28,45 @@ const Visitors = () => {
         let closedExhibits = 0;
 
         assets.map(element => {
-            if (element.currentlyOpenToVisitors == false) {
+            if (element.currentlyOpenToVisitors === false) {
                 closedExhibits = closedExhibits + 1;
             }
         })
         console.log(closedExhibits);
         return (
-            <Wrapper>
+            <>
                 {
-                    closedExhibits == 0
+                    closedExhibits === 0
                         ? <StatusOpen>All sectors operational</StatusOpen>
                         : <StatusOpen>Sectors closed: {closedExhibits}</StatusOpen>
                 }
-                <table>
-                    <tbody>
-                        {
-                            assets.map((item, index) => {
-                                return (
-                                    <TableRow key={index}>
-                                        <td>{item.name}</td>
-                                        {
-                                            item.currentlyOpenToVisitors
-                                                ? <Online>Online</Online>
-                                                : <Offline>Offline</Offline>
-                                        }
-                                        {
-                                            item.currentlyOpenToVisitors
-                                                ? <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Shut down</button></ToggleExhibit>
-                                                : <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Reopen</button></ToggleExhibit>
-                                        }
-                                    </TableRow>
-                                )
-                                
-                            })
-                        }
+                <main>
+                    
+                    <table>
+                        <tbody>
+                            {
+                                assets.map((item, index) => {
+                                    return (
+                                        <TableRow key={index}>
+                                            <td>{item.name}</td>
+                                            {
+                                                item.currentlyOpenToVisitors
+                                                    ? <Online>Online</Online>
+                                                    : <Offline>Offline</Offline>
+                                            }
+                                            {
+                                                item.currentlyOpenToVisitors
+                                                    ? <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Shut down</button></ToggleExhibit>
+                                                    : <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Reopen</button></ToggleExhibit>
+                                            }
+                                        </TableRow>
+                                    )
+                                })
+                            }
                         </tbody>
-                </table>
-            </Wrapper>
+                    </table>
+                </main>
+            </>
         )
     } else {
         return <Spinner />
@@ -72,10 +74,7 @@ const Visitors = () => {
     
 }
 
-const Wrapper = styled.main`
-`
-
-const StatusOpen = styled.div`
+const StatusOpen = styled.aside`
     background-color: var(--c-light);
     color: var(--c-dark);
     font-size: 30px;

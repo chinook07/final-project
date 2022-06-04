@@ -22,6 +22,9 @@ export default createGlobalStyle`
         padding: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    main > * {
+        margin: 15px;
+    }
     a {
         text-decoration: none;
         /* font-family: "JurassicPark"; */

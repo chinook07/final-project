@@ -53,39 +53,42 @@ const Population = () => {
         assets.map(element => countOfDinos += element.population)
 
         return (
-            <Wrapper>
+            <>
                 <TotalCount>Total count of assets: {countOfDinos}</TotalCount>
-                <h1>Population</h1>
-                <LogForm />
-                <PopTable>
-                    <thead>
-                        <tr>
-                            <th>Species</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            assets.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{item.species}</td>
-                                        <td>{item.population}</td>
-                                        <td>
-                                            <AddDino onClick={() => addDino(item)}>Birth</AddDino>
-                                            <RemoveDino onClick={() => removeDino(item)}>Death</RemoveDino>
-                                        </td>
-                                        <td>
-                                            <Feed onClick={() => feed(item)}>Add feeding time</Feed>
-                                            <Visit onClick={() => visit(item)}>Add visit time</Visit>
-                                        </td>
-                                    </tr>
-                                )
-                                
-                            })
-                        }
-                    </tbody>
+                <main>
+                    <h1>Population</h1>
+                    <LogForm />
+                    <PopTable>
+                        <thead>
+                            <tr>
+                                <th>Species</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                assets.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{item.species}</td>
+                                            <td>{item.population}</td>
+                                            <td>
+                                                <AddDino onClick={() => addDino(item)}>Birth</AddDino>
+                                                <RemoveDino onClick={() => removeDino(item)}>Death</RemoveDino>
+                                            </td>
+                                            <td>
+                                                <Feed onClick={() => feed(item)}>Add feeding time</Feed>
+                                                <Visit onClick={() => visit(item)}>Add visit time</Visit>
+                                            </td>
+                                        </tr>
+                                    )
+                                    
+                                })
+                            }
+                        </tbody>
                 </PopTable>
-            </Wrapper>
+                </main>
+                
+            </>
         )
     } else {
 
@@ -97,12 +100,11 @@ const Population = () => {
     
 }
 
-const Wrapper = styled.main``
-
-const TotalCount = styled.div`
-    background-color: var(--c-light);
+const TotalCount = styled.aside`
+    background-color: var(--c-blue);
     color: var(--c-yellow);
     font-size: 30px;
+    margin: 0;
     padding: 15px;
     text-align: center;
 `

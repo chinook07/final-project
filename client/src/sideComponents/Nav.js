@@ -22,7 +22,7 @@ const Wrapper = styled.nav`
     height: 60px;
     justify-content: space-around;
     a {
-        color: var(--color-gray);
+        color: var(--c-red);
     }
 `
 
