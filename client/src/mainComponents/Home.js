@@ -5,9 +5,9 @@ const Home = () => {
 
     if (true) {
         return (
-            <Wrapper>
+            <Wrapper2>
                 <Login />
-            </Wrapper>
+            </Wrapper2>
         )
     } else {
         return (
@@ -17,9 +17,9 @@ const Home = () => {
     
 }
 
-const Wrapper = styled.div`
+const Wrapper2 = styled.div`
     background: url("/images/gates.jpg") center;
-    height: 100%;
+    min-height: calc(100vh - 180px);
     position: relative;
 `
 

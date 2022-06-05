@@ -25,6 +25,11 @@ export default createGlobalStyle`
     main > * {
         margin: 15px;
     }
+    aside {
+        font-size: 30px;
+        padding: 15px;
+        text-align: center;
+    }
     a {
         text-decoration: none;
         /* font-family: "JurassicPark"; */

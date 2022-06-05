@@ -5,8 +5,8 @@ const Error = () => {
         <Wrapper>
             <Message>
                 <h1>Error 404</h1>
-                <p>Oopsie, a dinosaur snuck into the visitor center and wreaked some havoc on our computer systems!*</p>
-                <Disclaimer>*The scenario described on this page is 100% fictional. Jurassic Park has been voted Safest Workplace in Central America, every year since 2006.</Disclaimer>
+                <p>Oopsie, a dinosaur snuck into the Visitor Center and wreaked havoc on our computer systems!*</p>
+                <Disclaimer>*The scenario described on this page is 100% fictional. Jurassic Park has been voted Safest Workplace in Central America, every year since 2006. There have been no employee fatalities since 1996.</Disclaimer>
             </Message>
         </Wrapper>
     )
@@ -16,7 +16,7 @@ const Wrapper = styled.main`
     background-image: url("/images/trexError.jpg");
     background-position: center;
     background-size: cover;
-    height: 100%;
+    min-height: calc(100vh - 180px);
     position: relative;
 `
 

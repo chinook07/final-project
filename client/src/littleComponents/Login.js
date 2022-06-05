@@ -21,24 +21,24 @@ const Login = () => {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({user: userNameEntered})
+            body: JSON.stringify({user: userNameEntered, password: passwordEntered})
         })
             .then(res => {
                 res.json()
                 console.log(res)
             })
+            // .then(data => localStorage.setItem("user", JSON.stringify(data)))
             .then(req => {
                 console.log(req);
-                // return JSON.parse(data);
-                // if (data.status == 200) {
-                //     console.log(JSON.parse(data))
-                //     // setUser(data.data)
-                // } else {
-                //     console.log("error");
-                // }
-                // setPasswordEntered("") // to remove password from state
+            //     // return JSON.parse(data);
+            //     // if (data.status == 200) {
+            //     //     console.log(JSON.parse(data))
+            //     //     // setUser(data.data)
+            //     // } else {
+            //     //     console.log("error");
+            //     // }
+            //     // setPasswordEntered("") // to remove password from state
             })
-            // .then(data => localStorage.setItem("info", JSON.stringify(data.result)))
             .catch((err) => console.log("error", err))
     }
 

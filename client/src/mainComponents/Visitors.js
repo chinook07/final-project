@@ -77,9 +77,6 @@ const Visitors = () => {
 const StatusOpen = styled.aside`
     background-color: var(--c-light);
     color: var(--c-dark);
-    font-size: 30px;
-    padding: 15px;
-    text-align: center;
 `
 
 const TableRow = styled.tr`

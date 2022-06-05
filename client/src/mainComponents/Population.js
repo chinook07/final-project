@@ -103,10 +103,6 @@ const Population = () => {
 const TotalCount = styled.aside`
     background-color: var(--c-blue);
     color: var(--c-yellow);
-    font-size: 30px;
-    margin: 0;
-    padding: 15px;
-    text-align: center;
 `
 
 const PopTable = styled.table`
