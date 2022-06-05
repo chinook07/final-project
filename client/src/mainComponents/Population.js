@@ -16,7 +16,7 @@ const Population = () => {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({dinoName: item.species, currentNum: item.population})
+            body: JSON.stringify({species: item.species, currentNum: item.population})
         })
             .then(res => res.json())
             .then((data) => console.log(data))
@@ -30,7 +30,7 @@ const Population = () => {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({dinoName: item.species, currentNum: item.population})
+            body: JSON.stringify({species: item.species, currentNum: item.population})
         })
             .then(res => res.json())
             .then((data) => console.log(data))
@@ -38,7 +38,20 @@ const Population = () => {
     }
 
     const feed = (item) => {
+        const id = item._id
+        console.log(id);
         console.log(item.lastFeedings[0]);
+        fetch(`/api/feed/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            // body: JSON.stringify({})
+        })
+            .then(res => res.json())
+            .then((data) => console.log(data))
+            // .then(() => setUpdate(update + 1))
     }
 
     const visit = (item) => {
@@ -56,6 +69,7 @@ const Population = () => {
             <>
                 <TotalCount>Total count of assets: {countOfDinos}</TotalCount>
                 <main>
+                    
                     <h1>Population</h1>
                     <LogForm />
                     <PopTable>
@@ -76,8 +90,11 @@ const Population = () => {
                                                 <RemoveDino onClick={() => removeDino(item)}>Death</RemoveDino>
                                             </td>
                                             <td>
-                                                <Feed onClick={() => feed(item)}>Add feeding time</Feed>
                                                 <Visit onClick={() => visit(item)}>Add visit time</Visit>
+                                                {
+                                                    item.lastFeedings &&
+                                                    <Feed onClick={() => feed(item)}>Add feeding time</Feed>
+                                                }
                                             </td>
                                         </tr>
                                     )

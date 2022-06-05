@@ -8,14 +8,20 @@ const {
     getEmployees,
     getEmployee,
     hireEmployee,
-    fireEmployee,
-    getExhibit,
+    fireEmployee
+} = require("./handlers-employees");
+
+const { getVets } = require("./handlers-vets")
+
+const {
     getExhibits,
     birthDino,
     deathDino,
     toggleVisitor,
-    toggleFence
-} = require("./handlers");
+    toggleFence,
+    addFeed,
+    addVisit
+} = require("./handlers-exhibits");
 
 express()
     .use(morgan("tiny"))
@@ -23,32 +29,21 @@ express()
 
     .use(express.static("public"))
 
-    .post("/api/log-employee", logEmployee)
+    .post("/api/log-employee", logEmployee) //BE √ FE ×
+    .get("/api/get-employees", getEmployees) //BE √
+    .get("/api/get-employee/:id", getEmployee) //BE √
+    .post("/api/hire-employee", hireEmployee) //BE √
+    .delete("/api/fire-employee", fireEmployee) //BE √
 
-    .get("/api/get-employees", getEmployees)
-    .get("/api/get-employee/:id", getEmployee)
-    .post("/api/hire-employee", hireEmployee)
-    .delete("/api/fire-employee/:id", fireEmployee)
+    .get("/api/get-vets", getVets)
 
-    .get("/api/get-exhibit/:id", getExhibit)
-    .get("/api/get-exhibits", getExhibits)
-
-    .patch("/api/birth-dino", birthDino)
-    .patch("/api/death-dino", deathDino)
-    
-    .patch("/api/toggle-visitor/:id", toggleVisitor)
-    .patch("/api/toggle-fence", toggleFence)
-
-    //...
-
-    // .get("/api/get-flights", getFlights)
-    // .get("/api/get-flight/:id", getFlight)
-    // .post("/api/add-reservation", addReservation)
-    // .patch("/api/update-flight/:id", updateFlight)
-    // .get("/api/get-reservations", getReservations)
-    // .get("/api/get-reservation/:id", getSingleReservation)
-    // .patch("/api/update-reservation/:id", updateReservation)
-    // .delete("/api/delete-reservation/:id", deleteReservation)
+    .get("/api/get-exhibits", getExhibits) //BE √ FE √
+    .patch("/api/birth-dino", birthDino) //BE √ FE √
+    .patch("/api/death-dino", deathDino) //BE √ FE √
+    .patch("/api/toggle-visitor/:id", toggleVisitor) //BE √ FE √
+    .patch("/api/toggle-fence/:id", toggleFence)
+    .patch("/api/feed/:id", addFeed)
+    .patch("/api/visit/:id", addVisit)
 
     .get("*", (req, res) => {
         res.status(404).json({
