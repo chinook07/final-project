@@ -42,8 +42,8 @@ express()
     .patch("/api/death-dino", deathDino) //BE √ FE √
     .patch("/api/toggle-visitor/:id", toggleVisitor) //BE √ FE √
     .patch("/api/toggle-fence/:id", toggleFence)
-    .patch("/api/feed/:id", addFeed)
-    .patch("/api/visit/:id", addVisit)
+    .patch("/api/feed/:id", addFeed) //BE √
+    .patch("/api/visit/:id", addVisit) //BE √
 
     .get("*", (req, res) => {
         res.status(404).json({

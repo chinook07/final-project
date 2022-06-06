@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 
 import { DinoContext } from "../DinoContext";
@@ -6,6 +6,9 @@ import LogForm from "../littleComponents/LogForm";
 import Spinner from "../littleComponents/Spinner";
 
 const Population = () => {
+
+    const [showForm, setShowForm] = useState(false);
+    const [id, setId] = useState();
 
     const { assets, ready, update, setUpdate } = useContext(DinoContext);
 
@@ -38,20 +41,9 @@ const Population = () => {
     }
 
     const feed = (item) => {
-        const id = item._id
-        console.log(id);
         console.log(item.lastFeedings[0]);
-        fetch(`/api/feed/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            // body: JSON.stringify({})
-        })
-            .then(res => res.json())
-            .then((data) => console.log(data))
-            // .then(() => setUpdate(update + 1))
+        setShowForm(true);
+        setId(item._id);
     }
 
     const visit = (item) => {
@@ -71,7 +63,11 @@ const Population = () => {
                 <main>
                     
                     <h1>Population</h1>
-                    <LogForm />
+                    {
+                        showForm &&
+                        <LogForm id={id} />
+                    }
+                    
                     <PopTable>
                         <thead>
                             <tr>

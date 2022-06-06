@@ -36,7 +36,7 @@ const birthDino = async (req, res) => {
     await db.collection("assets").updateOne({species},{$set: {"population" : currentNum + 1}});
     await closeSesame();
 
-    return res.status(200).json({ status: 200, message: `Congratulations. You now have a new ${species}.` });
+    return res.status(200).json({ status: 200, message: `Congratulations. It's a ${species} girl.` });
 }
 
 const deathDino = async (req, res) => {
@@ -83,20 +83,30 @@ const addFeed = async (req, res) => {
 
     await openSesame();
     const { id } = req.params;
-    // await db.collection("assets").updateOne(id, {$set:{lastFeedings}})
+    const { time, employee } = req.body;
+    const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
+    await db.collection("assets").updateOne(
+        toUpdate,
+        { $push: { lastFeedings: { $each: [{time, employee}], $position: 0 } } }
+    )
     await closeSesame();
 
-    return res.status(200).json({ status: 200, id, message: `Fed.` });
+    return res.status(200).json({ status: 200, id, message: `Fed at ${time} by ${employee}.` });
 }
 
 const addVisit = async (req, res) => {
 
     await openSesame();
     const { id } = req.params;
-
+    const { time, employee } = req.body;
+    const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
+    await db.collection("assets").updateOne(
+        toUpdate,
+        { $push: { lastVisits: { $each: [{time, employee}], $position: 0 } } }
+    )
     await closeSesame();
 
-    return res.status(200).json({ status: 200, message: `Fed.` });
+    return res.status(200).json({ status: 200, id, message: `Visited at ${time} by ${employee}.` });
 }
 
 module.exports = {
