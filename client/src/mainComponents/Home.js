@@ -5,8 +5,8 @@ import { keyframes } from "styled-components";
 import Login from "../littleComponents/Login"
 
 import { DinoContext } from "../DinoContext";
-import { CgSmileMouthOpen } from "react-icons/cg";
-import { BsEmojiFrown } from "react-icons/bs";
+import { MdTour } from "react-icons/md";
+import { BiNoEntry } from "react-icons/bi";
 
 const blink = keyframes`
     from {opacity: 1};
@@ -160,11 +160,11 @@ const Hab6 = styled.div`
     top: 15%;
 `
 
-const Smile = styled(CgSmileMouthOpen)`
+const Smile = styled(MdTour)`
     cursor: pointer;
 `
 
-const Frown = styled(BsEmojiFrown)`
+const Frown = styled(BiNoEntry)`
     cursor: pointer;
 `
 

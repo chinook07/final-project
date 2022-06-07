@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { DinoContext } from "../DinoContext";
@@ -90,7 +91,7 @@ const Population = () => {
                                 assets.map((item, index) => {
                                     return (
                                         <tr key={index}>
-                                            <td>{item.species}</td>
+                                            <td><Link to={`/exhibit/${item._id}`}>{item.species}</Link></td>
                                             <td>{item.population}</td>
                                             <td>
                                                 <AddDino onClick={() => addDino(item)}>Birth</AddDino>
@@ -134,6 +135,9 @@ const PopTable = styled.table`
         tr {
             td {
                 padding: 10px;
+                a {
+                    color: var(--c-light);
+                }
                 button {
                     border: none;
                     cursor: pointer;

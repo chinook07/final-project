@@ -1,22 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
+import { keyframes } from "styled-components";
 
 import { DinoContext } from "../DinoContext";
+import AreYouSure from "../littleComponents/AreYouSure";
+
+const blink = keyframes`
+    from {opacity: 1};
+    49% {opacity: 1};
+    50% {opacity: 0};
+    to {opacity: 0};
+`
 
 const Exhibit = () => {
 
-    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+    const { user, assets, ready, update, setUpdate } = useContext(DinoContext);
+
+    const [showReq, setShowReq] = useState(false);
+
+    const closeForm = () => setShowReq(false);
 
     const exhibitId = useParams().id;
 
-    console.log(assets[exhibitId - 1]);
+    const { currentlyOpenToVisitors, dangerLevel, fenceActive, lastFeedings, lastVisits, name, population, species } = assets[exhibitId - 1];
 
-    const {currentlyOpenToVisitors, dangerLevel, fenceActive, lastFeedings, lastVisits, name, population, species} = assets[exhibitId - 1]
+    const needConfirm = () => {
+        setShowReq(true);
+    }
+
+    const enablePeri = () => {
+        fetch(`/api/toggle-fence/${exhibitId}`, {
+            method: "PATCH",
+        })
+            .then(res => res.json())
+            .then(() => setUpdate(update + 1))
+    }
 
     if (ready) {
         return (
             <>
+                {
+                    showReq &&
+                    <AreYouSure
+                        exhibitId={exhibitId}
+                        closeForm={closeForm}
+                    />
+                }
                 {
                     dangerLevel === "high"
                         ? <Danger>Hazardous asset precautions necessary<div>Approach with caution or don't approach at all!</div></Danger>
@@ -24,8 +54,24 @@ const Exhibit = () => {
                         
                 }
                 <main>
+                    {
+                        fenceActive
+                            ? <AllNormal>Perimeter active. Assets contained.</AllNormal>
+                            : <Breach>Perimeter breach – possible out of containment.</Breach>
+                    }
                     <h1>Exhibit {exhibitId}</h1>
                     <p>{name} currently has {population} living {species.toLowerCase()}.</p>
+                    {
+                        user.admin &&
+                        <FenceControl>
+                            {
+                                fenceActive
+                                    ? <button onClick={needConfirm}>Disable perimeter</button>
+                                    : <button onClick={enablePeri}>Activate perimeter</button>
+                            }
+                        </FenceControl>
+                    }
+                    
                 </main>
                 
             </>
@@ -36,7 +82,7 @@ const Exhibit = () => {
 }
 
 const Danger = styled.aside`
-    background-color: var(--c-red);
+    background-color: var(--c-dark);
     color: var(--c-light);
     div {
         font-size: 15px;
@@ -44,10 +90,34 @@ const Danger = styled.aside`
 `
 
 const NotDanger = styled.aside`
-    background-color: var(--c-blue);
+    background-color: var(--c-gray);
     color: var(--c-yellow);
     div {
         font-size: 15px;
+    }
+`
+
+const AllNormal = styled.aside`
+    background-color: var(--c-blue);
+    color: var(--c-light);
+`
+
+const Breach = styled.aside`
+    animation: ${blink} 2s linear infinite;
+    background-color: var(--c-red);
+    color: var(--c-light);
+`
+
+const FenceControl = styled.div`
+    button {
+        background-color: var(--c-light);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        font-size: 18px;
+        margin: auto;
+        padding: 8px 10px;
     }
 `
 

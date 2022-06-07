@@ -11,10 +11,13 @@ const Header = () => {
 
     // Logging out
 
+    const history = useHistory();
+
     const LogOut = () => {
         localStorage.clear();
         setUser(null);
         setUpdate(update + 1);
+        history.push("/")
     }
 
     // Custom greeting

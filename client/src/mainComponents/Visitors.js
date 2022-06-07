@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { DinoContext } from "../DinoContext";
@@ -48,7 +49,7 @@ const Visitors = () => {
                                 assets.map((item, index) => {
                                     return (
                                         <TableRow key={index}>
-                                            <td>{item.name}</td>
+                                            <td><Link to={`/exhibit/${item._id}`}>{item.name}</Link></td>
                                             {
                                                 item.currentlyOpenToVisitors
                                                     ? <Online>Online</Online>
@@ -87,6 +88,9 @@ const StatusOpen = styled.aside`
 const TableRow = styled.tr`
     td {
         padding: 10px;
+        a {
+            color: var(--c-light);
+        }
     }
 `
 
