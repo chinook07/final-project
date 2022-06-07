@@ -9,6 +9,7 @@ const Population = () => {
 
     const [showForm, setShowForm] = useState(false);
     const [id, setId] = useState();
+    const [whichForm, setWhichForm] = useState();
 
     const { assets, ready, update, setUpdate } = useContext(DinoContext);
 
@@ -41,13 +42,19 @@ const Population = () => {
     }
 
     const feed = (item) => {
-        console.log(item.lastFeedings[0]);
         setShowForm(true);
         setId(item._id);
+        setWhichForm("feed");
     }
 
     const visit = (item) => {
-        console.log(item.lastVisits[0]);
+        setShowForm(true);
+        setId(item._id);
+        setWhichForm("visit");
+    }
+
+    const closeForm = () => {
+        setShowForm(false)
     }
 
     console.log(assets);
@@ -65,7 +72,11 @@ const Population = () => {
                     <h1>Population</h1>
                     {
                         showForm &&
-                        <LogForm id={id} />
+                        <LogForm
+                            id={id}
+                            whichForm={whichForm}
+                            closeForm={closeForm}
+                        />
                     }
                     
                     <PopTable>
@@ -125,7 +136,6 @@ const PopTable = styled.table`
                 padding: 10px;
                 button {
                     border: none;
-                    color: var(--c-light);
                     cursor: pointer;
                     padding: 8px 10px;
                 }
@@ -136,18 +146,26 @@ const PopTable = styled.table`
 
 const AddDino = styled.button`
     background-color: var(--c-blue);
+    border-radius: 5px 0 0 5px;
+    color: var(--c-light);
 `
 
 const RemoveDino = styled.button`
-    background-color: var(--c-dark);
+    background-color: var(--c-gray);
+    border-radius: 0 5px 5px 0;
+    color: var(--c-light);
+`
+
+const Visit = styled.button`
+    background-color: var(--c-light);
+    border-radius: 5px 0 0 5px;
+    color: var(--c-dark);
 `
 
 const Feed = styled.button`
     background-color: var(--c-red);
-`
-
-const Visit = styled.button`
-    background-color: var(--c-gray);
+    border-radius: 0 5px 5px 0;
+    color: var(--c-light);
 `
 
 export default Population;

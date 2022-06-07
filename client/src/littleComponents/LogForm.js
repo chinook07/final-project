@@ -1,7 +1,11 @@
 import styled from "styled-components"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 
-const LogForm = ({id}) => {
+import { DinoContext } from "../DinoContext";
+
+const LogForm = ({ id, whichForm, closeForm }) => {
+    
+    const { update, setUpdate } = useContext(DinoContext);
 
     const [allVets, setAllVets] = useState([]);
 
@@ -19,13 +23,9 @@ const LogForm = ({id}) => {
     const updateTime = (e) => setTimeEntered(e.target.value);
     const updateEmployee = (e) => setEmployeeEntered(e.target.value);
 
-    const closeForm = () => {
-        console.log("close form");
-    }
-
     const addLog = (e) => {
         e.preventDefault();
-        fetch(`/api/feed/${id}`, {
+        fetch(`/api/${whichForm}/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +34,10 @@ const LogForm = ({id}) => {
             body: JSON.stringify({time: `${dateEntered} ${timeEntered}`, employee: employeeEntered})
         })
             .then(res => res.json())
-            .then((data) => console.log(data))
+            .then(() => {
+                closeForm()
+                setUpdate(update + 1)
+            })
     }
 
     console.log(id);
@@ -65,24 +68,27 @@ const LogForm = ({id}) => {
                         required
                     ></input>
                 </InputDiv>
-                <InputDiv>
-                    <label htmlFor="inputVet">By</label>
-                    <select
-                        id="inputVet"
-                        name="logInfo"
-                        value={employeeEntered}
-                        onChange={updateEmployee}
-                        required
-                    >
-                        {
-                            allVets.map((item, index) => {
-                                return (
-                                    <option key={index}>{item.name}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </InputDiv>
+                {
+                    whichForm === "visit" &&
+                        <InputDiv>
+                        <label htmlFor="inputVet">By</label>
+                        <select
+                            id="inputVet"
+                            name="logInfo"
+                            value={employeeEntered}
+                            onChange={updateEmployee}
+                            required
+                        >
+                            {
+                                allVets.map((item, index) => {
+                                    return (
+                                        <option key={index}>{item.name}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </InputDiv>
+                }
                 <ButtonCtrl>
                     <button type="button" value="cancel" onClick={closeForm}>Cancel</button>
                     <button type="submit" value="submit">Submit</button>
@@ -94,7 +100,7 @@ const LogForm = ({id}) => {
 }
 
 const Wrapper = styled.form`
-    background-color: var(--c-dark);
+    background-color: var(--c-gray);
     border-radius: 10px;
     color: var(--c-light);
     left: 50%;

@@ -29,21 +29,21 @@ express()
 
     .use(express.static("public"))
 
-    .post("/api/log-employee", logEmployee) //BE √ FE ×
+    .post("/api/log-employee", logEmployee) //BE √ FE almost there
     .get("/api/get-employees", getEmployees) //BE √
     .get("/api/get-employee/:id", getEmployee) //BE √
     .post("/api/hire-employee", hireEmployee) //BE √
     .delete("/api/fire-employee", fireEmployee) //BE √
 
-    .get("/api/get-vets", getVets)
+    .get("/api/get-vets", getVets) //BE √ FE √
 
     .get("/api/get-exhibits", getExhibits) //BE √ FE √
     .patch("/api/birth-dino", birthDino) //BE √ FE √
     .patch("/api/death-dino", deathDino) //BE √ FE √
     .patch("/api/toggle-visitor/:id", toggleVisitor) //BE √ FE √
-    .patch("/api/toggle-fence/:id", toggleFence)
-    .patch("/api/feed/:id", addFeed) //BE √
-    .patch("/api/visit/:id", addVisit) //BE √
+    .patch("/api/toggle-fence/:id", toggleFence) //BE √
+    .patch("/api/feed/:id", addFeed) //BE √ FE √
+    .patch("/api/visit/:id", addVisit) //BE √ FE √
 
     .get("*", (req, res) => {
         res.status(404).json({

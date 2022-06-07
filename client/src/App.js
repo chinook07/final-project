@@ -47,6 +47,8 @@ function App() {
 }
 
 const Wrapper = styled.div`
+    background-color: var(--c-dark);
+    color: var(--c-light);
     min-height: calc(100vh - 180px);
 `
 

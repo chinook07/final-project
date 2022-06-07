@@ -23,7 +23,7 @@ export default createGlobalStyle`
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     main > * {
-        margin: 15px;
+        padding: 15px;
     }
     aside {
         font-size: 30px;
@@ -34,5 +34,4 @@ export default createGlobalStyle`
         text-decoration: none;
         /* font-family: "JurassicPark"; */
     }
-    
 `

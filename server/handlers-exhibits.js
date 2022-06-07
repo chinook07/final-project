@@ -83,15 +83,15 @@ const addFeed = async (req, res) => {
 
     await openSesame();
     const { id } = req.params;
-    const { time, employee } = req.body;
+    const { time } = req.body;
     const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
     await db.collection("assets").updateOne(
         toUpdate,
-        { $push: { lastFeedings: { $each: [{time, employee}], $position: 0 } } }
+        { $push: { lastFeedings: { $each: [{time}], $position: 0 } } }
     )
     await closeSesame();
 
-    return res.status(200).json({ status: 200, id, message: `Fed at ${time} by ${employee}.` });
+    return res.status(200).json({ status: 200, id, message: `Fed at ${time}.` });
 }
 
 const addVisit = async (req, res) => {

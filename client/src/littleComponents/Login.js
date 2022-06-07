@@ -4,7 +4,7 @@ import { DinoContext } from "../DinoContext";
 
 const Login = () => {
 
-    const {user, setUser} = useContext(DinoContext)
+    const {user, setUser, update, setUpdate} = useContext(DinoContext)
 
     const [userNameEntered, setUserNameEntered] = useState("");
     const [passwordEntered, setPasswordEntered] = useState("");
@@ -23,21 +23,12 @@ const Login = () => {
             },
             body: JSON.stringify({user: userNameEntered, password: passwordEntered})
         })
-            .then(res => {
-                res.json()
-                console.log(res)
-            })
-            // .then(data => localStorage.setItem("user", JSON.stringify(data)))
-            .then(req => {
-                console.log(req);
-            //     // return JSON.parse(data);
-            //     // if (data.status == 200) {
-            //     //     console.log(JSON.parse(data))
-            //     //     // setUser(data.data)
-            //     // } else {
-            //     //     console.log("error");
-            //     // }
-            //     // setPasswordEntered("") // to remove password from state
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.result);
+                localStorage.setItem("user", JSON.stringify(data.result));
+                setUser(data.result);
+                setUpdate(update + 1);
             })
             .catch((err) => console.log("error", err))
     }

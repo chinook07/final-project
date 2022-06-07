@@ -59,6 +59,11 @@ const Visitors = () => {
                                                     ? <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Shut down</button></ToggleExhibit>
                                                     : <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Reopen</button></ToggleExhibit>
                                             }
+                                            {
+                                                item.fenceActive
+                                                    ? <FenceTrue>Zone secure</FenceTrue>
+                                                    : <FenceFalse>Zone breached</FenceFalse>
+                                            }
                                         </TableRow>
                                     )
                                 })
@@ -87,25 +92,36 @@ const TableRow = styled.tr`
 
 const Online = styled.td`
     background-color: var(--c-blue);
+    border-radius: 5px 0 0 5px;
     color: var(--c-light);
 `
 
 const Offline = styled.td`
     background-color: var(--c-red);
+    border-radius: 5px 0 0 5px;
     color: var(--c-light);
 `
 
 const ToggleExhibit = styled.td`
-    background-color: var(--c-dark);
+    background-color: var(--c-light);
+    border-radius: 0 5px 5px 0;
     button {
         background-color: inherit;
         border: none;
-        color: var(--c-light);
+        color: var(--c-dark);
         cursor: pointer;
         height: 100%;
         width: 100%;
-    }
-    
+    }   
+`
+
+const FenceTrue = styled.td`
+    background-color: var(--c-gray);
+`
+
+const FenceFalse = styled.td`
+    background-color: var(--c-red);
+    text-transform: uppercase;
 `
 
 export default Visitors;

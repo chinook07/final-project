@@ -4,7 +4,7 @@ export const DinoContext = createContext();
 
 const DinoContextProvider = ({ children }) => {
 
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [assets, setAssets] = useState([]);
     const [ready, setReady] = useState(false);
     const [update, setUpdate] = useState(0);

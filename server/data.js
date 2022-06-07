@@ -16,7 +16,7 @@ const employees = [
 ]
 
 const vets = [
-    {_id: 1, "name" : "automated"},
+    {_id: 1, "name" : ".Drone"},
     {_id: 2, "name" : "Craig Scotch"},
     {_id: 3, "name" : "Deeneaus Pollack"},
     {_id: 4, "name" : "Dennis Nordry"},
@@ -43,8 +43,8 @@ const assets = [
 			],
 		"lastFeedings" :
 			[
-				{"time" : "2022-06-10 10:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 13:00", "employee" : "automated", "portion" : "regular"}
+				{"time" : "2022-06-10 10:00"},
+				{"time" : "2022-06-09 13:00"}
 			],
 		"currentlyOpenToVisitors" : true
     },
@@ -62,8 +62,8 @@ const assets = [
 			],
 		"lastFeedings" :
 			[
-				{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
+				{"time" : "2022-06-10 09:00"},
+				{"time" : "2022-06-09 12:00"}
 			],
 		"currentlyOpenToVisitors" : true
     },
@@ -79,11 +79,6 @@ const assets = [
 				{"time" : "2022-06-10 12:54", "employee" : "Filip De Sousa"},
 				{"time" : "2022-06-07 11:12", "employee" : "Craig Scotch"}
 			],
-		// "lastFeedings" :
-		// 	[
-		// 		{"time" : "2022-06-10 09:36", "employee" : "pzoghbi", "portion" : "regular"},
-		// 		{"time" : "2022-06-08 14:32", "employee" : "pzoghbi", "portion" : "regular"}
-		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -98,11 +93,6 @@ const assets = [
 				{"time" : "2022-06-10 07:57", "employee" : "Elizabeth Jenkins"},
 				{"time" : "2022-06-07 08:31", "employee" : "Craig Scotch"}
 			],
-		// "lastFeedings" :
-		// 	[
-		// 		{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-		// 		{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
-		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -114,14 +104,9 @@ const assets = [
 		"fenceActive" : true,
 		"lastVisits" :
 			[
-				{"time" : "2022-06-06 12:58", "employee" : "Paula Corazon"},
+				{"time" : "2022-06-06 12:58", "employee" : ".Drone"},
 				{"time" : "2022-06-01 16:20", "employee" : "Glenn Smith"}
 			],
-		// "lastFeedings" :
-		// 	[
-		// 		{"time" : "2022-06-10 09:00", "employee" : "automated", "portion" : "regular"},
-		// 		{"time" : "2022-06-09 12:00", "employee" : "automated", "portion" : "regular"}
-		// 	],
 		"currentlyOpenToVisitors" : true
     },
     {
@@ -138,8 +123,8 @@ const assets = [
 			],
 		"lastFeedings" :
 			[
-				{"time" : "2022-06-10 16:00", "employee" : "automated", "portion" : "regular"},
-				{"time" : "2022-06-09 16:00", "employee" : "automated", "portion" : "regular"}
+				{"time" : "2022-06-10 16:00"},
+				{"time" : "2022-06-09 16:00"}
 			],
 		"currentlyOpenToVisitors" : true
     }
