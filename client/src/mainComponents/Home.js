@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
@@ -6,6 +6,8 @@ import { keyframes } from "styled-components";
 import { DinoContext } from "../DinoContext";
 import { MdTour } from "react-icons/md";
 import { BiNoEntry } from "react-icons/bi";
+import { ImCompass } from "react-icons/im";
+import Vitals from "../littleComponents/Vitals";
 
 const blink = keyframes`
     from {opacity: 1};
@@ -18,171 +20,151 @@ let borderColour;
 
 const Home = () => {
 
-    const { user, assets } = useContext(DinoContext);
-
-    const [vital, setVital] = useState([]);
+    const { assets } = useContext(DinoContext);
+    const [weather, setWeather] = useState({});
 
     const history = useHistory();
     const linkToHab = (id) => history.push(`/exhibit/${id}`)
 
-    useEffect(() => {
-        fetch("/api/vital-signs")
+    let dangerStatus = false;
+
+    assets.map(item => {
+        if (item.fenceActive === false) dangerStatus = true;
+    })
+
+    borderColour = "--c-blue";
+
+    const getWeather = (key) => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=9.54&lon=-85.11&appid=${key}&units=metric`)
             .then(res => res.json())
-            .then(data => setVital(data.result))
-        .catch(err => console.log(err))
+            .then(data => setWeather(data))
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        fetch("/api/get-key")
+            .then(res => res.json())
+            .then(data => getWeather(data.key))
+            .catch(err => console.log(err))
     }, [])
 
-    if (vital == []) {
-        return (
-            <Wrapper2>
-                <h1>Loading</h1>
-            </Wrapper2>
-        )
-    } else {
 
-        let dangerStatus = false;
 
-        assets.map(item => {
-            if (item.fenceActive === false) dangerStatus = true;
-        })
+    return (
+        <>
+            <Vitals />
+            <main>
+                {
+                    weather.weather &&
+                        <Weather>
+                            <div>{weather.weather[0].description}</div>
+                            <div>{parseInt(weather.main.temp)}°C</div>
+                            <Arrow angle={weather.wind.deg} />
+                            <div>{(3.6 * weather.wind.speed).toFixed()} km/h</div>
+                        </Weather>
+                }
+                {/* {
+                    dangerStatus &&
+                    <audio autoplay>
+                        <source src="./alert.mp3" type="audio/mpeg"></source>
+                    </audio>
+                } */}
+                
+                <h1>Systems Dashboard</h1>
 
-        borderColour = "--c-blue";
-        // assets.map(item => {
-        //     if (item.fenceActive === false) borderColour = "--c-red";
-        // })
-
-        return (
-            <>
-                <Vitals>
-                    {
-                        vital.map((item, index) => {
-                            let signColour, text;
-                            item.status
-                                ? text = "normal"
-                                : text = "alert"
-                            return <IndSign signColour={
-                                item.status
-                                    ? signColour = "--c-blue"
-                                    : signColour = "--c-red"
-                            } key={index}>
-                                <div>{item.name}</div>
-                                <div>{text}</div>
-                            </IndSign>
-                        })
-                    }
-                </Vitals>
-                <main>
-                    {/* {
-                        dangerStatus &&
-                        <audio autoplay>
-                            <source src="./alert.mp3" type="audio/mpeg"></source>
-                        </audio>
-                    } */}
-                    
-                    <h1>Jurassic Park Dashboard</h1>
-                    <ul>
-                        <li>Weather</li>
-                        <li>Map Legend</li>
-                    </ul>
-                    <ParkMap borderColour={
-                        assets.map(item => {
-                            if (item.fenceActive === false) borderColour = "--c-red";
-                        })
-                    }>
-                        <img alt="map of the park" src="./images/map.jpg" />
-                        <Hab1 onClick={() => linkToHab(1)}>
-                            {
-                                assets[0].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[0].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab1>
-                        <Hab2 onClick={() => linkToHab(2)}>
-                            {
-                                assets[1].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[1].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab2>
-                        <Hab3 onClick={() => linkToHab(3)}>
-                            {
-                                assets[2].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[2].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab3>
-                        <Hab4 onClick={() => linkToHab(4)}>
-                            {
-                                assets[3].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[3].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab4>
-                        <Hab5 onClick={() => linkToHab(5)}>
-                            {
-                                assets[4].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[4].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab5>
-                        <Hab6 onClick={() => linkToHab(6)}>
-                            {
-                                assets[5].currentlyOpenToVisitors
-                                    ? <Smile size={40} />
-                                    : <Frown size={40} />
-                            }
-                            {
-                                assets[5].fenceActive === false &&
-                                    <Breached>fence open</Breached>
-                            }
-                        </Hab6>
-                    </ParkMap>
-                </main>
-            </>
-        )
-    }
+                <ParkMap borderColour={
+                    assets.map(item => {
+                        if (item.fenceActive === false) borderColour = "--c-red";
+                    })
+                }>
+                    <img alt="map of the park" src="./images/map.jpg" />
+                    <Hab1 onClick={() => linkToHab(1)}>
+                        {
+                            assets[0].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[0].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab1>
+                    <Hab2 onClick={() => linkToHab(2)}>
+                        {
+                            assets[1].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[1].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab2>
+                    <Hab3 onClick={() => linkToHab(3)}>
+                        {
+                            assets[2].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[2].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab3>
+                    <Hab4 onClick={() => linkToHab(4)}>
+                        {
+                            assets[3].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[3].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab4>
+                    <Hab5 onClick={() => linkToHab(5)}>
+                        {
+                            assets[4].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[4].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab5>
+                    <Hab6 onClick={() => linkToHab(6)}>
+                        {
+                            assets[5].currentlyOpenToVisitors
+                                ? <Smile size={40} />
+                                : <Frown size={40} />
+                        }
+                        {
+                            assets[5].fenceActive === false &&
+                                <Breached>fence open</Breached>
+                        }
+                    </Hab6>
+                </ParkMap>
+            </main>
+        </>
+    )
 }
 
-const Wrapper2 = styled.div`
-    background: url("/images/gates.jpg") center;
-    min-height: calc(100vh - 180px);
-    position: relative;
-`
-
-const Vitals = styled.div`
+const Weather = styled.div`
+    background-color: var(--c-gray);
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    text-align: right;
+    div:first-child {
+        text-transform: capitalize;
+    }
+    > * {
+        margin-left: 15px;
+    }
 `
 
-const IndSign = styled.div`
-    background-color: var(${props => props.signColour});
-    border: 1px solid var(--c-dark);
-    padding: 10px;
-    text-align: center;
-    width: calc(100% / 6);
-    div:last-child {
-        text-transform: uppercase;
-    }
+const Arrow = styled(ImCompass)`
+    transform: rotate(${props => props.angle - 45}deg);
 `
 
 const ParkMap = styled.div`

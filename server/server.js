@@ -14,7 +14,8 @@ const {
 const {
     getVets,
     getSigns,
-    changeSign
+    changeSign,
+    getKey
 } = require("./handlers-others")
 
 const {
@@ -50,7 +51,9 @@ express()
     .patch("/api/visit/:id", addVisit) //BE √ FE √
 
     .get("/api/vital-signs", getSigns) //BE √ FE √
-    .patch("/api/vital-sign/:id", changeSign) //BE √
+    .patch("/api/vital-sign/:id", changeSign) //BE √ FE √
+
+    .get("/api/get-key", getKey)
 
     .get("*", (req, res) => {
         res.status(404).json({

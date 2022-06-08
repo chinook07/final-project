@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
-const { MONGO_URI } = process.env;
+const { MONGO_URI, WEATHER_KEY } = process.env;
 
 const options = {
     useNewUrlParser: true,
@@ -51,4 +51,8 @@ const changeSign = async (req, res) => {
     return res.status(200).json({ status: 200, toUpdate, message: "Toggled." });
 }
 
-module.exports = { getVets, getSigns, changeSign };
+const getKey = async (req, res) => {
+    return res.status(200).json({ status: 200, key: WEATHER_KEY, message: "Here's the key."})
+}
+
+module.exports = { getVets, getSigns, changeSign, getKey };

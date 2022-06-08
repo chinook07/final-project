@@ -7,22 +7,19 @@ import Spinner from "../littleComponents/Spinner";
 
 const Visitors = () => {
 
-    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+    const { assets, ready, update, setUpdate, vital, setVital } = useContext(DinoContext);
 
     const turnOnOff = (id) => {
         fetch(`/api/toggle-visitor/${id}`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
+            headers: {"Accept": "application/json"}
         })
             .then(res => res.json())
-            .then((data) => console.log(data))
-            .then(() => setUpdate(update + 1))
+            .then((data) => {
+                console.log(data)
+                setUpdate(update + 1)
+            })
     }
-
-    console.log(assets);
 
     if (ready) {
 
@@ -33,7 +30,6 @@ const Visitors = () => {
                 closedExhibits = closedExhibits + 1;
             }
         })
-        console.log(closedExhibits);
         return (
             <>
                 {
