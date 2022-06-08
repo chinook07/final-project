@@ -15,28 +15,48 @@ const blink = keyframes`
     to {opacity: 0};
 `
 
+let borderColour;
+
 const Home = () => {
 
-    const { user, setUser, assets, update, setUpdate } = useContext(DinoContext);
+    const { user, assets } = useContext(DinoContext);
 
     const history = useHistory();
     const linkToHab = (id) => history.push(`/exhibit/${id}`)
 
-    if (user === null) {
-        return (
-            <Wrapper2>
-                <Login />
-            </Wrapper2>
-        )
-    } else {
+    // if (user === null) {
+    //     return (
+    //         <Wrapper2>
+    //             <Login />
+    //         </Wrapper2>
+    //     )
+    // } else {
+
+        let dangerStatus = false;
+
+        assets.map(item => {
+            if (item.fenceActive === false) dangerStatus = true;
+        })
+
+        borderColour = "--c-blue";
+        assets.map(item => {
+            if (item.fenceActive === false) borderColour = "--c-red";
+        })
+
         return (
             <main>
+                {
+                    dangerStatus &&
+                    <audio autoplay>
+                        <source src="./alert.mp3" type="audio/mpeg"></source>
+                    </audio>
+                }
                 <h1>Jurassic Park Dashboard</h1>
                 <ul>
                     <li>Weather</li>
                     <li>Map Legend</li>
                 </ul>
-                <ParkMap>
+                <ParkMap borderColour>
                     <img alt="map of the park" src="./images/map.jpg" />
                     <Hab1 onClick={() => linkToHab(1)}>
                         {
@@ -45,7 +65,7 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[0].fenceActive == false &&
+                            assets[0].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab1>
@@ -56,7 +76,7 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[1].fenceActive == false &&
+                            assets[1].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab2>
@@ -67,7 +87,7 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[2].fenceActive == false &&
+                            assets[2].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab3>
@@ -78,7 +98,7 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[3].fenceActive == false &&
+                            assets[3].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab4>
@@ -89,7 +109,7 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[4].fenceActive == false &&
+                            assets[4].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab5>
@@ -100,14 +120,14 @@ const Home = () => {
                                 : <Frown size={40} />
                         }
                         {
-                            assets[5].fenceActive == false &&
+                            assets[5].fenceActive === false &&
                                 <Breached>fence open</Breached>
                         }
                     </Hab6>
                 </ParkMap>
             </main>
         )
-    }
+    // }
     
 }
 
@@ -118,6 +138,11 @@ const Wrapper2 = styled.div`
 `
 
 const ParkMap = styled.div`
+    /* border: 6px solid var(${borderColour}); */
+    /* border-color: ${borderColour};
+    border-style: solid;
+    border-width: 2px; */
+    padding: 0;
     position: relative;
     img {
         opacity: 0.5;

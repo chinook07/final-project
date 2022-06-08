@@ -61,6 +61,11 @@ const Exhibit = () => {
                     }
                     <h1>Exhibit {exhibitId}</h1>
                     <p>{name} currently has {population} living {species.toLowerCase()}.</p>
+                    <p>Last visited at {lastVisits[0].time} by {lastVisits[0].employee}.</p>
+                    {
+                        lastFeedings &&
+                        <p>Last fed at {lastFeedings[0].time} by our drones.</p>
+                    }
                     {
                         user.admin &&
                         <FenceControl>
@@ -118,6 +123,9 @@ const FenceControl = styled.div`
         font-size: 18px;
         margin: auto;
         padding: 8px 10px;
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 `
 

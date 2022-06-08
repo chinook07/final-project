@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import ChooseExhibit from "../littleComponents/ChooseExhibit";
 
@@ -14,24 +14,21 @@ const Nav = () => {
     }
 
     return (
-        <Wrapper>
+        <div>
             <NavBar>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/population">Population</NavLink>
                 <NavLink to="/logs">Logs</NavLink>
-                <span onClick={toggleExhibitMenu}>Exhibit info</span> {/* will need to add params */}
+                <span onClick={toggleExhibitMenu}>Exhibit info</span>
                 <NavLink to="/visitors">Visitors</NavLink>
             </NavBar>
             {
                 showMenu &&
                 <ChooseExhibit />
             }
-        </Wrapper>
+        </div>
     )
 }
-
-const Wrapper = styled.div`
-`
 
 const NavBar = styled.nav`
     align-items: center;

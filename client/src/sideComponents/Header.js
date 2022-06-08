@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { DinoContext } from "../DinoContext";
@@ -34,7 +34,7 @@ const Header = () => {
 
     return (
         <Wrapper>
-            <h1>Jurassic Park Management</h1>
+            <HomeLink to="/">Jurassic Park Management</HomeLink>
             {
                 user !== null
                     ? <LogOutDiv>
@@ -55,9 +55,12 @@ const Wrapper = styled.header`
     height: 60px;
     justify-content: space-between;
     padding: 0 15px;
-    h1 {
-        font-size: large;
-    }
+`
+
+const HomeLink = styled(NavLink)`
+    color: var(--c-light);
+    font-size: large;
+    font-weight: bold;
 `
 
 const LogOutDiv = styled.div`

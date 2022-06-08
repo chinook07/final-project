@@ -34,6 +34,7 @@ const AreYouSure = ({ exhibitId, closeForm }) => {
 const Wrapper = styled.div`
     background-color: var(--c-red);
     border: 4px dashed var(--c-yellow);
+    border-radius: 15px;
     left: 50%;
     padding: 10px;
     position: absolute;
