@@ -130,4 +130,13 @@ const assets = [
     }
 ]
 
-module.exports = {employees, assets, vets}
+const vitalSigns = [
+    { _id: 1, name: "Park status", status : true },
+    { _id: 2, name: "Power systems", status : true },
+    { _id: 3, name: "Communication systems", status : true },
+    { _id: 4, name: "Park perimeter fence", status : true },
+    { _id: 5, name: "Habitat fences", status : true },
+    { _id: 6, name: "Park operations", status : true },
+]
+
+module.exports = {employees, assets, vets, vitalSigns}

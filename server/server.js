@@ -11,7 +11,11 @@ const {
     fireEmployee
 } = require("./handlers-employees");
 
-const { getVets } = require("./handlers-vets")
+const {
+    getVets,
+    getSigns,
+    changeSign
+} = require("./handlers-others")
 
 const {
     getExhibits,
@@ -29,7 +33,7 @@ express()
 
     .use(express.static("public"))
 
-    .post("/api/log-employee", logEmployee) //BE √ FE almost there
+    .post("/api/log-employee", logEmployee) //BE √ FE √
     .get("/api/get-employees", getEmployees) //BE √
     .get("/api/get-employee/:id", getEmployee) //BE √
     .post("/api/hire-employee", hireEmployee) //BE √
@@ -44,6 +48,9 @@ express()
     .patch("/api/toggle-fence/:id", toggleFence) //BE √
     .patch("/api/feed/:id", addFeed) //BE √ FE √
     .patch("/api/visit/:id", addVisit) //BE √ FE √
+
+    .get("/api/vital-signs", getSigns) //BE √ FE √
+    .patch("/api/vital-sign/:id", changeSign) //BE √
 
     .get("*", (req, res) => {
         res.status(404).json({

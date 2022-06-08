@@ -1,4 +1,4 @@
-const { employees, assets, vets } = require("./data");
+const { employees, assets, vets, vitalSigns } = require("./data");
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
@@ -18,6 +18,7 @@ const batchImport = async () => {
     // await db.collection("employees").insertMany(employees);
     // await db.collection("assets").insertMany(assets);
     // await db.collection("vets").insertMany(vets);
+    await db.collection("vitalSigns").insertMany(vitalSigns)
     await client.close();
     console.log("disconnected!");
 }
