@@ -30,7 +30,7 @@ const Employees = () => {
             headers: {"Accept": "application/json"}
         })
             .then(res => res.json())
-            .then(setUpdateLocal(updateLocal + 1))
+            .then(() => setUpdateLocal(updateLocal + 1))
             .catch(err => console.log(err))
     }
 
@@ -44,28 +44,35 @@ const Employees = () => {
     };
 
     if (allStaff.length > 0) {
+
+        let orderOfIds = [];
+        allStaff.map(item => {
+            orderOfIds.push(parseInt(item._id))
+        })
+        orderOfIds.sort(function(a, b){return a-b});
+
         return (
             <>
                 <main>
-                    <h1>Jurassic Park Staff</h1>
+                    <h1>JPM Access Profiles</h1>
                     <Table>
                         {
-                            allStaff.map((member, index) => {
+                            orderOfIds.map((item, index) => {
+                                const result = allStaff.find(member => member._id == item);
                                 return (
                                     <div key={index}>
                                         <User size={40}/>
-                                        <Id>{member._id} {member.username}</Id>
+                                        <Id>{result._id} {result.username}</Id>
                                         {
-                                            member.password.length < 9 &&
+                                            result.password.length < 9 &&
                                             <Pass>Password insecure</Pass>
                                         }
                                         {
-                                            member._id !== user._id &&
-                                            <Fire size={25} onClick={() => fireThem(member._id)} />
+                                            result._id !== user._id &&
+                                            <Fire size={25} onClick={() => fireThem(result._id)} />
                                         }
-                                        
                                         {
-                                            member.admin &&
+                                            result.admin &&
                                             <Admin><span>Admin</span></Admin>
                                         }
                                     </div>

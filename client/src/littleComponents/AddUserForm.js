@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-const AddUserForm = (exitForm, updateLocal, setUpdateLocal) => {
+const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
 
     const [idEntered, setIdEntered] = useState("");
     const [UserEntered, setUserEntered] = useState("");
@@ -82,7 +82,11 @@ const AddUserForm = (exitForm, updateLocal, setUpdateLocal) => {
                         onChange={updateAdmin}
                     ></input>
                 </div>
-                <button type="submit" value="submit">Hire</button>
+                <div>
+                    <button type="button" value="cancel" onClick={exitForm}>Cancel</button>
+                    <button type="submit" value="submit">Hire</button>
+                </div>
+                
             </fieldset>
         </Wrapper>
     )
@@ -105,18 +109,20 @@ const Wrapper = styled.form`
             display: flex;
             justify-content: space-between;
             margin: 15px;
+            button {
+                background-color: var(--c-light);
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                display: block;
+                margin: 10px auto;
+                padding: 10px 15px;
+            }
             label {
                 margin-right: 10px;
             }
         }
-        button {
-            background-color: var(--c-light);
-            border: none;
-            border-radius: 5px;
-            display: block;
-            margin: 10px auto;
-            padding: 10px 15px;
-        }
+        
     }
 `
 
