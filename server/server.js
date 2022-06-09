@@ -35,10 +35,10 @@ express()
     .use(express.static("public"))
 
     .post("/api/log-employee", logEmployee) //BE √ FE √
-    .get("/api/get-employees", getEmployees) //BE √
+    .get("/api/get-employees", getEmployees) //BE √ FE √
     .get("/api/get-employee/:id", getEmployee) //BE √
     .post("/api/hire-employee", hireEmployee) //BE √
-    .delete("/api/fire-employee", fireEmployee) //BE √
+    .delete("/api/fire-employee/:id", fireEmployee) //BE √
 
     .get("/api/get-vets", getVets) //BE √ FE √
 

@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+import { DinoContext } from "../DinoContext";
 import ChooseExhibit from "../littleComponents/ChooseExhibit";
 
 const Nav = () => {
 
+    const { user } = useContext(DinoContext);
     const [showMenu, setShowMenu] = useState(false);
 
     const toggleExhibitMenu = () => {
@@ -21,6 +23,10 @@ const Nav = () => {
                 <NavLink to="/logs">Logs</NavLink>
                 <span onClick={toggleExhibitMenu}>Exhibit info</span>
                 <NavLink to="/visitors">Visitors</NavLink>
+                {
+                    user.admin &&
+                    <NavLink to="/employees">Staff roster</NavLink>
+                }
             </NavBar>
             {
                 showMenu &&

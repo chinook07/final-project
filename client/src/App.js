@@ -13,8 +13,9 @@ import Login from "./littleComponents/Login";
 import Home from "./mainComponents/Home";
 import Population from "./mainComponents/Population";
 import Logs from "./mainComponents/Logs";
-import Visitors from "./mainComponents/Visitors";
 import Exhibit from "./mainComponents/Exhibit";
+import Visitors from "./mainComponents/Visitors";
+import Employees from "./mainComponents/Employees";
 import Error from "./mainComponents/Error"
 
 const App = () => {
@@ -50,11 +51,15 @@ const App = () => {
                         <Route exact path="/logs">
                             <Logs />
                         </Route>
+                        
+                        <Route path="/exhibit/:id">
+                            <Exhibit />
+                        </Route>
                         <Route exact path="/visitors">
                             <Visitors />
                         </Route>
-                        <Route path="/exhibit/:id">
-                            <Exhibit />
+                        <Route exact path="/employees">
+                            <Employees />
                         </Route>
                         <Route path="*">
                             <Error />

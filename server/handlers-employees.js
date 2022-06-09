@@ -69,11 +69,11 @@ const hireEmployee = async (req, res) => {
 const fireEmployee = async (req, res) => {
 
     await openSesame();
-    const { user } = req.body;
-    await db.collection("employees").deleteOne({ "username": user });
+    const { id } = req.params;
+    await db.collection("employees").deleteOne({ _id: id });
     await closeSesame();
 
-    return res.status(200).json({ status: 200, message: `${user} has been terminated.` });
+    return res.status(200).json({ status: 200, message: `Employee ${id} has been terminated.` });
 }
 
 module.exports = {
