@@ -10,28 +10,28 @@ const Nav = () => {
     const { user } = useContext(DinoContext);
     const [showMenu, setShowMenu] = useState(false);
 
-    const toggleExhibitMenu = () => {
-        console.log("show");
-        showMenu ? setShowMenu(false) : setShowMenu(true)
-    }
+    const openExhibitMenu = () => setShowMenu(true)
+    const hideExhibitMenu = () => setShowMenu(false)
 
     return (
         <div>
             <NavBar>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/population">Population</NavLink>
-                <NavLink to="/logs">Logs</NavLink>
-                <span onClick={toggleExhibitMenu}>Exhibit info</span>
-                <NavLink to="/visitors">Visitors</NavLink>
+                <NavLink strict to="/" activeClassName="active">Home</NavLink>
+                <NavLink to="/population" activeClassName="active">Population</NavLink>
+                <NavLink to="/logs" activeClassName="active">Logs</NavLink>
+                <span onMouseEnter={openExhibitMenu} onMouseLeave={hideExhibitMenu}>Exhibit info
+                    {
+                        showMenu &&
+                        <ChooseExhibit />
+                    }
+                </span>
+                <NavLink to="/visitors" activeClassName="active">Visitors</NavLink>
                 {
                     user.admin &&
-                    <NavLink to="/employees">Staff roster</NavLink>
+                    <NavLink to="/employees" activeClassName="active">Staff roster</NavLink>
                 }
             </NavBar>
-            {
-                showMenu &&
-                <ChooseExhibit />
-            }
+            
         </div>
     )
 }
@@ -40,11 +40,18 @@ const NavBar = styled.nav`
     align-items: center;
     background-color: var(--c-yellow);
     display: flex;
-    height: 60px;
-    justify-content: space-around;
+    justify-content: center;
     > * {
-        color: var(--c-red);
+        color: var(--c-dark);
         cursor: pointer;
+        padding: 20px;
+    }
+    .active {
+        background-color: var(--c-gray);
+        color: var(--c-light);
+    }
+    span {
+        position: relative;
     }
 `
 

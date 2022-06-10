@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import AddUserForm from "../littleComponents/AddUserForm";
 import { HiOutlineUserRemove, HiOutlineUserAdd, HiUserCircle } from "react-icons/hi"
+import Spinner from "../littleComponents/Spinner";
 import { DinoContext } from "../DinoContext";
 
 const Employees = () => {
@@ -96,7 +97,7 @@ const Employees = () => {
             </>
         )
     } else {
-        return <h1>Load...</h1>
+        return <Spinner/>
     }
     
 }

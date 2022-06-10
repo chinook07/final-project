@@ -6,7 +6,7 @@ import { DinoContext } from "../DinoContext";
 
 const ChooseExhibit = () => {
 
-    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+    const { assets, ready } = useContext(DinoContext);
 
     if (ready) {
         return (
@@ -30,10 +30,11 @@ const ChooseExhibit = () => {
 }
 
 const Wrapper = styled.ul`
-    left: 70%;
+    left: 50%;
     position: absolute;
+    top: 100%;
     transform: translateX(-50%);
-    width: fit-content;
+    width: 190px;
     li {
         list-style-type: none;
         opacity: 0.8;
