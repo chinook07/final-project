@@ -34,4 +34,7 @@ export default createGlobalStyle`
         text-decoration: none;
         /* font-family: "JurassicPark"; */
     }
+    h1 {
+        text-align: center;
+    }
 `

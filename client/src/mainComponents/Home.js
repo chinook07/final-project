@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-
+import Spinner from "../littleComponents/Spinner";
 
 import { ImCompass } from "react-icons/im";
 import Vitals from "../littleComponents/Vitals";
 import ParkMap from "../littleComponents/ParkMap";
-
+import { DinoContext } from "../DinoContext";
 
 
 const Home = () => {
+
+    const { user, assets, ready, update, setUpdate } = useContext(DinoContext);
 
     const [weather, setWeather] = useState({});
 
@@ -25,6 +27,10 @@ const Home = () => {
             .then(data => getWeather(data.key))
             .catch(err => console.log(err))
     }, [])
+
+    if (!ready) {
+        return <Spinner/>
+    }
 
     return (
         <>

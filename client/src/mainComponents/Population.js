@@ -24,7 +24,6 @@ const Population = () => {
             body: JSON.stringify({species: item.species, currentNum: item.population})
         })
             .then(res => res.json())
-            .then((data) => console.log(data))
             .then(() => setUpdate(update + 1))
     }
 
@@ -38,7 +37,6 @@ const Population = () => {
             body: JSON.stringify({species: item.species, currentNum: item.population})
         })
             .then(res => res.json())
-            .then((data) => console.log(data))
             .then(() => setUpdate(update + 1))
     }
 
@@ -57,8 +55,6 @@ const Population = () => {
     const closeForm = () => {
         setShowForm(false)
     }
-
-    console.log(assets);
 
     if (ready) {
         

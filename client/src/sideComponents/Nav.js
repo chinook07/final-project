@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 import { DinoContext } from "../DinoContext";
 import ChooseExhibit from "../littleComponents/ChooseExhibit";
@@ -16,22 +16,21 @@ const Nav = () => {
     return (
         <div>
             <NavBar>
-                <NavLink strict to="/" activeClassName="active">Home</NavLink>
-                <NavLink to="/population" activeClassName="active">Population</NavLink>
-                <NavLink to="/logs" activeClassName="active">Logs</NavLink>
+                <NavLink to="/" exact={true}>Home</NavLink>
+                <NavLink to="/population">Population</NavLink>
+                <NavLink to="/logs" >Logs</NavLink>
                 <span onMouseEnter={openExhibitMenu} onMouseLeave={hideExhibitMenu}>Exhibit info
                     {
                         showMenu &&
                         <ChooseExhibit />
                     }
                 </span>
-                <NavLink to="/visitors" activeClassName="active">Visitors</NavLink>
+                <NavLink to="/visitors">Visitors</NavLink>
                 {
                     user.admin &&
-                    <NavLink to="/employees" activeClassName="active">Staff roster</NavLink>
+                    <NavLink to="/employees">Staff roster</NavLink>
                 }
             </NavBar>
-            
         </div>
     )
 }
@@ -45,7 +44,11 @@ const NavBar = styled.nav`
         color: var(--c-dark);
         cursor: pointer;
         padding: 20px;
+        &:hover {
+            background-color: var(--c-light);
+        }
     }
+    
     .active {
         background-color: var(--c-gray);
         color: var(--c-light);

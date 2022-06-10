@@ -98,7 +98,6 @@ const Logs = () => {
                                         </Log>
                                     )
                                 }
-                                
                             })
                         }
                         <AiOutlineDown size={25} onClick={() => showEarlier(setMinShowF, setMaxShowF, minShowF, maxShowF, reOrderedFeedTimes.length)}/>

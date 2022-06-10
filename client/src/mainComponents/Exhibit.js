@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 
 import { DinoContext } from "../DinoContext";
+import Spinner from "../littleComponents/Spinner";
 import AreYouSure from "../littleComponents/AreYouSure";
 
 const blink = keyframes`
@@ -22,7 +23,9 @@ const Exhibit = () => {
     const closeForm = () => setShowReq(false);
 
     const exhibitId = useParams().id;
-
+    if (!ready) {
+        return <Spinner/>
+    }
     const { currentlyOpenToVisitors, dangerLevel, fenceActive, lastFeedings, lastVisits, name, population, species } = assets[exhibitId - 1];
 
     const needConfirm = () => {
@@ -81,7 +84,7 @@ const Exhibit = () => {
                 
             </>
         )
-    }
+    } 
 
     
 }

@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import Spinner from "./littleComponents/Spinner";
 
 export const DinoContext = createContext();
 
@@ -17,7 +18,7 @@ const DinoContextProvider = ({ children }) => {
         .catch(err => console.log(err))
     }, [update])
 
-    if (ready) {
+    // if (ready) {
         return (
             <DinoContext.Provider
                 value={{
@@ -34,7 +35,12 @@ const DinoContextProvider = ({ children }) => {
                 {children}
             </DinoContext.Provider>
         )
-    }
+     // else {
+    //     return (
+    //         <Spinner/>
+    //     )
+        
+    // }
 
 }
 

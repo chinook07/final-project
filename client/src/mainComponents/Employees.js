@@ -9,7 +9,6 @@ import { DinoContext } from "../DinoContext";
 const Employees = () => {
 
     const { user } = useContext(DinoContext)
-    console.log(user);
 
     const [allStaff, setAllStaff] = useState([]);
     const [updateLocal, setUpdateLocal] = useState(0);
@@ -18,10 +17,7 @@ const Employees = () => {
     useEffect(() => {
         fetch("/api/get-employees")
             .then(res => res.json())
-            .then(data => {
-                console.log(data.staff)
-                setAllStaff(data.staff)
-            })
+            .then(data => setAllStaff(data.staff))
             .catch(err => console.log(err))
     }, [updateLocal])
 
@@ -35,14 +31,8 @@ const Employees = () => {
             .catch(err => console.log(err))
     }
 
-    const hireMember = () => {
-        console.log("hire");
-        setShowForm(true)
-    }
-
-    const exitForm = () => {
-        setShowForm(false)
-    };
+    const hireMember = () => setShowForm(true)
+    const exitForm = () => setShowForm(false)
 
     if (allStaff.length > 0) {
 

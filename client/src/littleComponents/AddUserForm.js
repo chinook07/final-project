@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { CommonPasswords, Numbers } from "./Password";
 
 const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
 
@@ -7,6 +8,8 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
     const [UserEntered, setUserEntered] = useState("");
     const [PassEntered, setPassEntered] = useState("");
     const [AdminEntered, setAdminEntered] = useState(false);
+    const [showWarningId, setShowWarningId] = useState(false);
+    const [showWarningPass, setShowWarningPass] = useState(false);
 
     const updateId = (e) => setIdEntered(e.target.value);
     const updateUser = (e) => setUserEntered(e.target.value);
@@ -15,6 +18,31 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
 
     const addEmployee = (e) => {
         e.preventDefault();
+        if (idEntered.length !== 3) {
+            if (PassEntered.length >= 8 && PassEntered.length <= 16) setShowWarningPass(false)
+            setShowWarningId(true);
+            return
+        }
+        if (PassEntered.length < 8 || PassEntered.length > 16) {
+            if (idEntered.length === 3) setShowWarningId(false);
+            setShowWarningPass(true);
+            return
+        }
+        if (CommonPasswords.includes(PassEntered)) {
+            setShowWarningPass(true);
+            return
+        }
+        let digitPresent = false;
+        Numbers.forEach(digit => {
+            if (PassEntered.includes(digit)) {
+                digitPresent = true;
+                return
+            }
+        })
+        if (!digitPresent) {
+            setShowWarningPass(true);
+            return
+        }
         fetch(`/api/hire-employee`, {
             method: "POST",
             headers: {
@@ -45,6 +73,8 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
                         type="number"
                         id="id"
                         name="newUser"
+                        pattern="[0-9]{3}"
+                        maxLength="3"
                         value={idEntered}
                         onChange={updateId}
                         required
@@ -82,6 +112,14 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
                         onChange={updateAdmin}
                     ></input>
                 </div>
+                {
+                    showWarningId &&
+                    <Warning>The ID must match JP ISO 5415-62 norms and be 3 digits in length.</Warning>
+                }
+                {
+                    showWarningPass &&
+                    <Warning>Jurassic Park takes cybersecurity seriously. The temporary password must be between 8 and 16 characters in length, contain at least 1 digit, and cannot be a popular one often chosen.</Warning>
+                }
                 <div>
                     <button type="button" value="cancel" onClick={exitForm}>Cancel</button>
                     <button type="submit" value="submit">Hire</button>
@@ -93,7 +131,7 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
 }
 
 const Wrapper = styled.form`
-    background-color: var(--c-dark);
+    background-color: var(--c-gray);
     left: 50%;
     position: absolute;
     top: 50%;
@@ -103,7 +141,7 @@ const Wrapper = styled.form`
         text-align: center;
     }
     fieldset {
-        border-color: var(--c-yellow);
+        border-color: var(--c-dark);
         padding: 10px;
         > div {
             display: flex;
@@ -124,6 +162,10 @@ const Wrapper = styled.form`
         }
         
     }
+`
+
+const Warning = styled.div`
+    color: var(--c-red);
 `
 
 export default AddUserForm;

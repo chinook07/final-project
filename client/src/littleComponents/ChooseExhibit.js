@@ -14,11 +14,9 @@ const ChooseExhibit = () => {
                 {
                     assets.map((element, index) => {
                         return (
-                            <li key={index}>
-                                <NavLink to={`/exhibit/${element._id}`}>
-                                    {element._id}: {element.name}
-                                </NavLink>
-                            </li>
+                            <NavLink key={index} to={`/exhibit/${element._id}`}>
+                                {element._id}: {element.name}
+                            </NavLink>
                         )
                     })
                 }
@@ -29,30 +27,29 @@ const ChooseExhibit = () => {
     
 }
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
+    
     left: 50%;
     position: absolute;
     top: 100%;
     transform: translateX(-50%);
     width: 190px;
-    li {
-        list-style-type: none;
-        opacity: 0.8;
-        padding: 5px;
+    z-index: 1;
+    a {
+        background-color: var(--c-yellow);
+        color: var(--c-dark);
+        display: block;
+        padding: 7px;
         &:hover {
-            opacity: 1;
+            background-color: var(--c-light);
         }
-        
-        a {
+        &.active {
+            background-color: var(--c-gray);
             color: var(--c-light);
         }
-    }
-    li:nth-child(odd) {
-        background-color: var(--c-dark);
-        
-    }
-    li:nth-child(even) {
-        background-color: var(--c-gray);
+        &:last-of-type {
+            border-radius: 0 0 10px 10px;
+        }
     }
 `
 
