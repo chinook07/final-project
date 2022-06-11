@@ -16,7 +16,8 @@ import Logs from "./mainComponents/Logs";
 import Exhibit from "./mainComponents/Exhibit";
 import Visitors from "./mainComponents/Visitors";
 import Employees from "./mainComponents/Employees";
-import Error from "./mainComponents/Error"
+import MoreInfo from "./mainComponents/MoreInfo";
+import Error from "./mainComponents/Error";
 
 const App = () => {
 
@@ -60,6 +61,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/employees">
                             <Employees />
+                        </Route>
+                        <Route exact path="/moreinfo">
+                            <MoreInfo />
                         </Route>
                         <Route path="*">
                             <Error />

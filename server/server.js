@@ -12,13 +12,6 @@ const {
 } = require("./handlers-employees");
 
 const {
-    getVets,
-    getSigns,
-    changeSign,
-    getKey
-} = require("./handlers-others")
-
-const {
     getExhibits,
     birthDino,
     deathDino,
@@ -28,6 +21,13 @@ const {
     addVisit
 } = require("./handlers-exhibits");
 
+const {
+    getVets,
+    getSigns,
+    changeSign,
+    getKey
+} = require("./handlers-others")
+
 express()
     .use(morgan("tiny"))
     .use(express.json())
@@ -36,11 +36,11 @@ express()
 
     .post("/api/log-employee", logEmployee) //BE √ FE √
     .get("/api/get-employees", getEmployees) //BE √ FE √
-    .get("/api/get-employee/:id", getEmployee) //BE √
-    .post("/api/hire-employee", hireEmployee) //BE √
-    .delete("/api/fire-employee/:id", fireEmployee) //BE √
+    .get("/api/get-employee/:id", getEmployee) //BE √ useless?
+    .post("/api/hire-employee", hireEmployee) //BE √ FE √
+    .delete("/api/fire-employee/:id", fireEmployee) //BE √ FE √
 
-    .get("/api/get-vets", getVets) //BE √ FE √
+    
 
     .get("/api/get-exhibits", getExhibits) //BE √ FE √
     .patch("/api/birth-dino", birthDino) //BE √ FE √
@@ -50,10 +50,10 @@ express()
     .patch("/api/feed/:id", addFeed) //BE √ FE √
     .patch("/api/visit/:id", addVisit) //BE √ FE √
 
+    .get("/api/get-vets", getVets) //BE √ FE √
     .get("/api/vital-signs", getSigns) //BE √ FE √
     .patch("/api/vital-sign/:id", changeSign) //BE √ FE √
-
-    .get("/api/get-key", getKey)
+    .get("/api/get-key", getKey) //BE √ FE √ → get weather API key
 
     .get("*", (req, res) => {
         res.status(404).json({

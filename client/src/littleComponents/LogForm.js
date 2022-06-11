@@ -1,13 +1,22 @@
 import styled from "styled-components"
 import { useEffect, useState, useContext } from "react"
+import { format, compareAsc, parseISO } from 'date-fns';
 
 import { DinoContext } from "../DinoContext";
 
 const LogForm = ({ id, whichForm, closeForm }) => {
+
+    // Load contexts and states.
     
     const { update, setUpdate } = useContext(DinoContext);
 
+    const [dateEntered, setDateEntered] = useState("");
+    const [timeEntered, setTimeEntered] = useState("");
+    const [employeeEntered, setEmployeeEntered] = useState("");
     const [allVets, setAllVets] = useState([]);
+    const [showDateWarning, setShowDateWarning] = useState(false);
+
+    // Get list of vets.
 
     useEffect(() => {
         fetch("/api/get-vets")
@@ -15,16 +24,22 @@ const LogForm = ({ id, whichForm, closeForm }) => {
             .then(data => setAllVets(data.result))
     }, [])
 
-    const [dateEntered, setDateEntered] = useState("");
-    const [timeEntered, setTimeEntered] = useState("");
-    const [employeeEntered, setEmployeeEntered] = useState("");
+    // Update states when user enters info in form.
 
     const updateDate = (e) => setDateEntered(e.target.value);
     const updateTime = (e) => setTimeEntered(e.target.value);
     const updateEmployee = (e) => setEmployeeEntered(e.target.value);
 
+    // Handle sending of form, with an error validation to make sure user doesn't select a future date.
+
     const addLog = (e) => {
         e.preventDefault();
+        const nowDate = format(new Date(), 'yyyy-MM-dd');
+        const order = compareAsc(parseISO(nowDate), parseISO(dateEntered));
+        if (order === -1) {
+            setShowDateWarning(true)
+            return
+        }
         fetch(`/api/${whichForm}/${id}`, {
             method: "PATCH",
             headers: {
@@ -39,8 +54,6 @@ const LogForm = ({ id, whichForm, closeForm }) => {
                 setUpdate(update + 1)
             })
     }
-
-    console.log(id);
 
     return (
         <Wrapper onSubmit={addLog}>
@@ -89,6 +102,10 @@ const LogForm = ({ id, whichForm, closeForm }) => {
                         </select>
                     </InputDiv>
                 }
+                {
+                    showDateWarning &&
+                    <Warning>You have selected a future date. We can do a lot of miracles of Jurassic Park, but time travel is not one of them.</Warning>
+                }
                 <ButtonCtrl>
                     <button type="button" value="cancel" onClick={closeForm}>Cancel</button>
                     <button type="submit" value="submit">Submit</button>
@@ -130,6 +147,10 @@ const InputDiv = styled.div`
     input, select {
         padding: 5px;
     }
+`
+
+const Warning = styled.div`
+    color: var(--c-red);
 `
 
 const ButtonCtrl = styled.div`

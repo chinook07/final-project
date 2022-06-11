@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components";
 import { format } from 'date-fns';
 
@@ -8,7 +9,7 @@ const Footer = () => {
     return (
         <Wrapper>
             <p>Copyright Ingen 1993-{year}</p>
-            <p>Other info</p>
+            <Link to="/moreinfo">Other info</Link>
         </Wrapper>
     )
 }
@@ -16,11 +17,13 @@ const Footer = () => {
 const Wrapper = styled.footer`
     align-items: center;
     background-color: var(--c-blue);
-    color: var(--c-yellow);
     display: flex;
     height: 60px;
     justify-content: space-between;
     padding: 0 15px;
+    > * {
+        color: var(--c-yellow);
+    }
 `
 
 export default Footer;

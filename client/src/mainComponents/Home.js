@@ -10,7 +10,7 @@ import { DinoContext } from "../DinoContext";
 
 const Home = () => {
 
-    const { user, assets, ready, update, setUpdate } = useContext(DinoContext);
+    const { ready } = useContext(DinoContext);
 
     const [weather, setWeather] = useState({});
 
@@ -40,7 +40,7 @@ const Home = () => {
                 {
                     weather.weather &&
                         <Weather>
-                            <div>{weather.weather[0].description}</div>
+                            <div>Isla Nublar: {weather.weather[0].description}</div>
                             <div>{parseInt(weather.main.temp)}°C</div>
                             <Arrow angle={weather.wind.deg} />
                             <div>{(3.6 * weather.wind.speed).toFixed()} km/h</div>
@@ -58,9 +58,6 @@ const Weather = styled.div`
     display: flex;
     justify-content: flex-end;
     text-align: right;
-    div:first-child {
-        text-transform: capitalize;
-    }
     > * {
         margin-left: 15px;
     }
