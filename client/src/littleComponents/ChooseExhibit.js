@@ -1,3 +1,5 @@
+// This compoment is a dropdown menu belonging to the Habitat info link on the nav menu.
+
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -5,6 +7,8 @@ import styled from "styled-components";
 import { DinoContext } from "../DinoContext";
 
 const ChooseExhibit = () => {
+
+    // Import context.
 
     const { assets, ready } = useContext(DinoContext);
 
@@ -23,8 +27,6 @@ const ChooseExhibit = () => {
             </Wrapper>
         )
     }
-
-    
 }
 
 const Wrapper = styled.div`

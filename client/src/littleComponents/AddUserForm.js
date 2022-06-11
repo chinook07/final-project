@@ -1,8 +1,12 @@
+// This component allows the user to add a new user to the database.
+
 import styled from "styled-components";
 import { useState } from "react";
 import { CommonPasswords, Numbers } from "./Password";
 
-const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
+const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
+    
+    // Get the states needed.
 
     const [idEntered, setIdEntered] = useState("");
     const [UserEntered, setUserEntered] = useState("");
@@ -11,10 +15,14 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
     const [showWarningId, setShowWarningId] = useState(false);
     const [showWarningPass, setShowWarningPass] = useState(false);
 
+    // Update states when user enters info in form.
+
     const updateId = (e) => setIdEntered(e.target.value);
     const updateUser = (e) => setUserEntered(e.target.value);
     const updatePass = (e) => setPassEntered(e.target.value);
     const updateAdmin = (e) => setAdminEntered(e.target.checked);
+
+    // Handle adding the employee, with some error validation.
 
     const addEmployee = (e) => {
         e.preventDefault();
@@ -124,7 +132,6 @@ const AddUserForm = ({exitForm, updateLocal, setUpdateLocal}) => {
                     <button type="button" value="cancel" onClick={exitForm}>Cancel</button>
                     <button type="submit" value="submit">Hire</button>
                 </div>
-                
             </fieldset>
         </Wrapper>
     )

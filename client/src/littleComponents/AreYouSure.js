@@ -1,3 +1,5 @@
+// This component gives the user a chance at redeption before opening up the fences of a habitat and causing some damage.
+
 import { useContext } from "react";
 import styled from "styled-components";
 
@@ -5,7 +7,11 @@ import { DinoContext } from "../DinoContext";
 
 const AreYouSure = ({ exhibitId, closeForm }) => {
 
+    // Get the context.
+
     const { update, setUpdate } = useContext(DinoContext);
+
+    // Handle the disable of the fence.
     
     const disablePeri = () => {
         fetch(`/api/toggle-fence/${exhibitId}`, {
@@ -18,13 +24,11 @@ const AreYouSure = ({ exhibitId, closeForm }) => {
             })
     }
 
-    const chickenOut = () => closeForm();
-
     return (
         <Wrapper>
             <p>Are you sure you want to shut off the habitat perimeter fence? If done so, loss of like may occur.</p>
             <div>
-                <button onClick={chickenOut}>cancel</button>
+                <button onClick={closeForm}>cancel</button>
                 <button onClick={disablePeri}>confirm</button>
             </div>
         </Wrapper>
@@ -49,6 +53,7 @@ const Wrapper = styled.div`
         justify-content: space-evenly;
         margin-top: 8px;
         button {
+            cursor: pointer;
             padding: 10px;
             text-transform: uppercase;
         }

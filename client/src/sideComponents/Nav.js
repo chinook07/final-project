@@ -19,7 +19,7 @@ const Nav = () => {
                 <NavLink to="/" exact={true}>Home</NavLink>
                 <NavLink to="/population">Population</NavLink>
                 <NavLink to="/logs" >Logs</NavLink>
-                <span onMouseEnter={openExhibitMenu} onMouseLeave={hideExhibitMenu}>Exhibit info
+                <span onMouseEnter={openExhibitMenu} onMouseLeave={hideExhibitMenu}>Habitat info
                     {
                         showMenu &&
                         <ChooseExhibit />

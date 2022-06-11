@@ -1,20 +1,27 @@
+// This component allows users to log in.
+
 import styled from "styled-components";
 import { useState, useContext } from "react";
 import { DinoContext } from "../DinoContext";
 
 const Login = () => {
 
-    const {user, setUser, update, setUpdate} = useContext(DinoContext)
+    // Get the context and the states.
+
+    const {setUser, update, setUpdate} = useContext(DinoContext)
 
     const [userNameEntered, setUserNameEntered] = useState("");
     const [passwordEntered, setPasswordEntered] = useState("");
 
+    // Update states when user inputs info.
+
     const updateUN = (e) => setUserNameEntered(e.target.value);
     const updatePW = (e) => setPasswordEntered(e.target.value);
 
+    // Handle login procedure.
+
     const handleLogIn = (e) => {
         e.preventDefault();
-
         fetch("/api/log-employee", {
             method: "POST",
             headers: {
@@ -25,7 +32,6 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.result);
                 localStorage.setItem("user", JSON.stringify(data.result));
                 setUser(data.result);
                 setUpdate(update + 1);
@@ -33,35 +39,32 @@ const Login = () => {
             .catch((err) => console.log("error", err))
     }
 
-    if (true) {
-        return (
-            <LogIn
-                onSubmit={handleLogIn}
-                name="login"
-            >
-                <fieldset>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        name="login"
-                        required
-                        value={userNameEntered}
-                        onChange={updateUN}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="login"
-                        required
-                        value={passwordEntered}
-                        onChange={updatePW}
-                    />
-                    <button type="submit">Submit</button>
-                </fieldset>
-            </LogIn>
-        )
-    }
-    
+    return (
+        <LogIn
+            onSubmit={handleLogIn}
+            name="login"
+        >
+            <fieldset>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    name="login"
+                    required
+                    value={userNameEntered}
+                    onChange={updateUN}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    name="login"
+                    required
+                    value={passwordEntered}
+                    onChange={updatePW}
+                />
+                <button type="submit">Submit</button>
+            </fieldset>
+        </LogIn>
+    )
 }
 
 const LogIn = styled.form`

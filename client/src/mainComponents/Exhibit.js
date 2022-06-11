@@ -62,7 +62,7 @@ const Exhibit = () => {
                             ? <AllNormal>Perimeter active. Assets contained.</AllNormal>
                             : <Breach>Perimeter breach – possible out of containment.</Breach>
                     }
-                    <h1>Exhibit {exhibitId}</h1>
+                    <h1>Habitat {exhibitId}</h1>
                     <p>{name} currently has {population} living {species.toLowerCase()}.</p>
                     <p>Last visited at {lastVisits[0].time} by {lastVisits[0].employee}.</p>
                     {
