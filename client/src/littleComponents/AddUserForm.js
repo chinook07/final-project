@@ -141,8 +141,8 @@ const Wrapper = styled.form`
     background-color: var(--c-gray);
     left: 50%;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 80%;
+    transform: translate(-50%, -80%);
     p {
         margin-bottom: 10px;
         text-align: center;

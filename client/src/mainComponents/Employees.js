@@ -44,7 +44,7 @@ const Employees = () => {
 
         return (
             <>
-                <main>
+                <Main>
                     <h1>JPM Access Profiles</h1>
                     <Table>
                         {
@@ -64,7 +64,7 @@ const Employees = () => {
                                         }
                                         {
                                             result.admin &&
-                                            <Admin><span>Admin</span></Admin>
+                                            <Admin><span>Clearance</span></Admin>
                                         }
                                     </div>
                                 )
@@ -82,7 +82,7 @@ const Employees = () => {
                             setUpdateLocal={setUpdateLocal}
                         />
                     }
-                </main>
+                </Main>
                 
             </>
         )
@@ -91,6 +91,10 @@ const Employees = () => {
     }
     
 }
+
+const Main = styled.main`
+    position: relative;
+`
 
 const Table = styled.div`
     display: flex;
@@ -151,6 +155,7 @@ const Admin = styled.div`
     }
     &:hover span {
         display: block;
+        font-size: small;
     }
 `
 

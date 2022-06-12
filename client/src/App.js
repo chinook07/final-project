@@ -28,9 +28,16 @@ const App = () => {
             <BrowserRouter>
                 <GlobalStyles />
                 <Header />
-                <Wrapper2>
-                    <Login />
-                </Wrapper2>
+                <Wrapper>
+                    <Switch>
+                        <Route exact path="/moreinfo">
+                            <MoreInfo />
+                        </Route>
+                        <Route path="*">
+                            <Login />
+                        </Route>
+                    </Switch>
+                </Wrapper>
                 <Footer />
             </BrowserRouter>
             
@@ -52,7 +59,6 @@ const App = () => {
                         <Route exact path="/logs">
                             <Logs />
                         </Route>
-                        
                         <Route path="/exhibit/:id">
                             <Exhibit />
                         </Route>
@@ -80,12 +86,6 @@ const Wrapper = styled.div`
     background-color: var(--c-dark);
     color: var(--c-light);
     min-height: calc(100vh - 180px);
-`
-
-const Wrapper2 = styled.div`
-    background: url("/images/gates.jpg") center;
-    min-height: calc(100vh - 120px);
-    position: relative;
 `
 
 export default App;

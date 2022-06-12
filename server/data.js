@@ -12,7 +12,9 @@ const employees = [
     { _id: "129", username: "pzoghbi", password: "velocipede4", admin: false },
     { _id: "151", username : "ltremblay", password : "florida0AC", admin : false},
     { _id: "187", username : "amueller", password : "828flight", admin : false},
-    { _id: "197", username : "imalcolm", password : "magicWord!Ah1", admin : false},
+    { _id: "197", username: "imalcolm", password: "magicWord!Ah1", admin: false },
+    { _id: "800", username: "Al", password: "123", admin: true },
+    { _id: "801", username : "Bob", password : "123", admin : false},
 ]
 
 const vets = [

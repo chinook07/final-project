@@ -40,49 +40,72 @@ const Login = () => {
     }
 
     return (
-        <LogIn
-            onSubmit={handleLogIn}
-            name="login"
-        >
-            <fieldset>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    name="login"
-                    required
-                    value={userNameEntered}
-                    onChange={updateUN}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="login"
-                    required
-                    value={passwordEntered}
-                    onChange={updatePW}
-                />
-                <button type="submit">Submit</button>
-            </fieldset>
-        </LogIn>
+        <Wrapper>
+            <LogIn
+                onSubmit={handleLogIn}
+                name="login"
+            >
+                <fieldset>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            name="login"
+                            required
+                            value={userNameEntered}
+                            onChange={updateUN}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="login"
+                            required
+                            value={passwordEntered}
+                            onChange={updatePW}
+                        />
+                    </div>
+                    
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </LogIn>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+    background: url("/images/gates.jpg") center;
+    min-height: calc(100vh - 120px);
+    position: relative;
+`
 
 const LogIn = styled.form`
     left: 50%;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 100%;
+    transform: translate(-50%, -100%);
     fieldset {
+        border: none;
         display: flex;
         flex-direction: column;
-        input {
-            background-color: var(--c-yellow);
-            padding: 5px;
+        > div {
+            display: flex;
+            justify-content: space-around;
+            input {
+                background-color: #f0b83eee;
+                border-color: var(--c-gray);
+                border-style: solid;
+                border-width: 0 0 1px 1px;
+                margin: 0 5px;
+                padding: 8px;
+                
+            }
         }
         button {
             background-color: var(--c-dark);
             color: var(--c-light);
-            padding: 5px;
+            margin: 5px auto;
+            padding: 10px;
+            
         }
     }
 `
