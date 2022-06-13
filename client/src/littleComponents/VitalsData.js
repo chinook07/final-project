@@ -1,3 +1,5 @@
+// This small piece of data feeds the text to the vitals component.
+
 const VitalSigns = [
     "Park status",
     "Power systems",

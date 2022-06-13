@@ -1,3 +1,5 @@
+// Just a 404 page. This will only work when logged in. Otherwise, the default go to is the login page.
+
 import styled from "styled-components";
 
 const Error = () => {

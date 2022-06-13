@@ -1,3 +1,5 @@
+// This component displays the vitals in the top of the home page.
+
 import { useContext } from "react";
 import styled from "styled-components";
 
@@ -6,21 +8,25 @@ import VitalSigns from "./VitalsData";
 
 const Vitals = () => {
 
+    // Load the context.
+
     const { assets } = useContext(DinoContext);
+
+    // The fences are all active by default. That said, loop through all of them to see if that's still the case.
 
     let allFencesActive = "active";
     assets.map(item => {
-        if (item.fenceActive === false) {
-            allFencesActive = "alert"
-        }
+        if (item.fenceActive === false) allFencesActive = "alert"
     })
+
+    // Same as above, with whether all sectors of the park are open.
 
     let parkActive = "active";
     assets.map(item => {
-        if (item.currentlyOpenToVisitors === false) {
-            parkActive = "alert"
-        }
+        if (item.currentlyOpenToVisitors === false) parkActive = "alert"
     })
+
+    // Note that the first 4 items of the vitals screen are static and are not affected by what happens on the site. Only index 4 and 5 are dynamic.
 
     return (
         <Wrapper>

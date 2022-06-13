@@ -1,3 +1,5 @@
+// Only high clearance staff has access to this page, allowing them to add and remove staff at will.
+
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -8,11 +10,14 @@ import { DinoContext } from "../DinoContext";
 
 const Employees = () => {
 
-    const { user } = useContext(DinoContext)
+    // Load context and states.
 
+    const { user } = useContext(DinoContext);
     const [allStaff, setAllStaff] = useState([]);
     const [updateLocal, setUpdateLocal] = useState(0);
     const [showForm, setShowForm] = useState(false);
+
+    // Upon load, and everytime the staff roster gets updated, fetch the info about all the staff.
 
     useEffect(() => {
         fetch("/api/get-employees")
@@ -20,6 +25,8 @@ const Employees = () => {
             .then(data => setAllStaff(data.staff))
             .catch(err => console.log(err))
     }, [updateLocal])
+
+    // Handle the process for deleting a staff member from the list.
 
     const fireThem = (id) => {
         fetch(`/api/fire-employee/${id}`, {
@@ -31,10 +38,13 @@ const Employees = () => {
             .catch(err => console.log(err))
     }
 
-    const hireMember = () => setShowForm(true)
+    // Handle closing the form when done hiring someone, or when cancelling. This function is sent as a prop to a child component.
+
     const exitForm = () => setShowForm(false)
 
     if (allStaff.length > 0) {
+
+        // Reorder staff list, numerically by ID.
 
         let orderOfIds = [];
         allStaff.map(item => {
@@ -71,7 +81,7 @@ const Employees = () => {
                             })
                         }
                         <div>
-                            <AddUser size={50} onClick={hireMember} />
+                            <AddUser size={50} onClick={() => setShowForm(true)} />
                         </div>
                     </Table>
                     {

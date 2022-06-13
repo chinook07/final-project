@@ -1,3 +1,5 @@
+// The exhibit (or habitat) component gives the user a quick look at some basic info about each habitat.
+
 import { useContext, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
@@ -6,6 +8,8 @@ import { keyframes } from "styled-components";
 import { DinoContext } from "../DinoContext";
 import Spinner from "../littleComponents/Spinner";
 import AreYouSure from "../littleComponents/AreYouSure";
+
+// Create blinking animation for when the habitat perimeter is breached.
 
 const blink = keyframes`
     from {opacity: 1};
@@ -16,21 +20,23 @@ const blink = keyframes`
 
 const Exhibit = () => {
 
-    const { user, assets, ready, update, setUpdate } = useContext(DinoContext);
+    // Load context and state.
 
+    const { user, assets, ready, update, setUpdate } = useContext(DinoContext);
     const [showReq, setShowReq] = useState(false);
 
-    const closeForm = () => setShowReq(false);
+    // Use params to get the right habitat info.
 
     const exhibitId = useParams().id;
-    if (!ready) {
-        return <Spinner/>
-    }
+
+    // Load our lovely spinner if things aren't ready.
+    if (!ready) return <Spinner/>
+
+    // Get the info about this exhibit.
+
     const { currentlyOpenToVisitors, dangerLevel, fenceActive, lastFeedings, lastVisits, name, population, species } = assets[exhibitId - 1];
 
-    const needConfirm = () => {
-        setShowReq(true);
-    }
+    // Active perimeter using a patch request.
 
     const enablePeri = () => {
         fetch(`/api/toggle-fence/${exhibitId}`, {
@@ -47,7 +53,7 @@ const Exhibit = () => {
                     showReq &&
                     <AreYouSure
                         exhibitId={exhibitId}
-                        closeForm={closeForm}
+                        closeForm={() => setShowReq(false)}
                     />
                 }
                 {
@@ -62,7 +68,11 @@ const Exhibit = () => {
                             ? <AllNormal>Perimeter active. Assets contained.</AllNormal>
                             : <Breach>Perimeter breach – possible out of containment.</Breach>
                     }
-                    <h1>Habitat {exhibitId}</h1>
+                    {
+                        currentlyOpenToVisitors
+                            ? <h1>Habitat {exhibitId} – Open</h1>
+                            : <h1>Habitat {exhibitId} – Closed</h1>
+                    }
                     <p>{name} currently has {population} living {species.toLowerCase()}.</p>
                     <p>Last visited at {lastVisits[0].time} by {lastVisits[0].employee}.</p>
                     {
@@ -74,19 +84,15 @@ const Exhibit = () => {
                         <FenceControl>
                             {
                                 fenceActive
-                                    ? <button onClick={needConfirm}>Disable perimeter</button>
+                                    ? <button onClick={() => setShowReq(true)}>Disable perimeter</button>
                                     : <button onClick={enablePeri}>Activate perimeter</button>
                             }
                         </FenceControl>
                     }
-                    
                 </main>
-                
             </>
         )
     } 
-
-    
 }
 
 const Danger = styled.aside`

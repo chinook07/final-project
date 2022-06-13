@@ -1,3 +1,5 @@
+// This component displays the park map.
+
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +9,7 @@ import { DinoContext } from "../DinoContext";
 import { MdTour } from "react-icons/md";
 import { BiNoEntry } from "react-icons/bi";
 
+// Create the keyframes for the blinking message.
 
 const blink = keyframes`
     from {opacity: 1};
@@ -17,7 +20,11 @@ const blink = keyframes`
 
 const ParkMap = () => {
 
+    // Load the context.
+
     const { assets } = useContext(DinoContext);
+
+    // Allow linking a part of the map to the habitat info.
 
     const history = useHistory();
     const linkToHab = (id) => history.push(`/exhibit/${id}`)

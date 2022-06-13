@@ -1,3 +1,5 @@
+// This is a list of common passwords that will be refused.
+
 export const CommonPasswords = [
     "password",
     "12345678",

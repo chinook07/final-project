@@ -1,3 +1,5 @@
+// Probably the highlight of my project, the loading screen shows a helicopter chasing after a dinosaur chasing after a running person!
+
 import { FaRunning } from "react-icons/fa"
 import { GiDinosaurRex, GiHelicopter } from "react-icons/gi";
 import { keyframes } from "styled-components";
