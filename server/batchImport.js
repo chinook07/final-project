@@ -9,16 +9,23 @@ const options = {
     useUnifiedTopology: true,
 };
 
+const crypto = require("crypto-js");
+
 const batchImport = async () => {
 
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     console.log("connected!");
     const db = client.db();
-    // await db.collection("employees").insertMany(employees);
+    let secureEmployees = [];
+    employees.forEach(item => {
+        let encryptedPass = crypto.AES.encrypt(item.password, process.env.PASS_SEC).toString();
+        secureEmployees.push({_id: item._id, username: item.username, password: encryptedPass, admin: item.admin})
+    })
+    await db.collection("employees").insertMany(secureEmployees);
     // await db.collection("assets").insertMany(assets);
     // await db.collection("vets").insertMany(vets);
-    await db.collection("vitalSigns").insertMany(vitalSigns)
+    // await db.collection("vitalSigns").insertMany(vitalSigns)
     await client.close();
     console.log("disconnected!");
 }

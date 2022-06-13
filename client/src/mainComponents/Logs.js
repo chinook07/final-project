@@ -48,11 +48,11 @@ const Logs = () => {
         // Put them in order.
 
         const feedingTimesOrder = [];
-        carnivores.map(dino => {
-            dino.lastFeedings.map(feed => {
+        carnivores.map(dino => (
+            dino.lastFeedings.map(feed => (
                 feedingTimesOrder.push(feed.time)
-            })
-        })
+            ))
+        ))
         feedingTimesOrder.sort().reverse()
 
         let reOrderedFeedTimes = [];
@@ -69,11 +69,11 @@ const Logs = () => {
         // Now for the visiting times
 
         const visitTimesOrder = [];
-        assets.map(dino => {
-            dino.lastVisits.map(visit => {
+        assets.map(dino => (
+            dino.lastVisits.map(visit => (
                 visitTimesOrder.push(visit.time)
-            })
-        })
+            ))
+        ))
         visitTimesOrder.sort().reverse()
 
         let reOrderedVisitTimes = [];

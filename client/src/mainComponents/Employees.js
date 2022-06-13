@@ -1,6 +1,7 @@
 // Only high clearance staff has access to this page, allowing them to add and remove staff at will.
 
 import { useContext, useEffect, useState } from "react";
+import { parseISO, formatDistanceToNow } from "date-fns"
 import styled from "styled-components";
 
 import AddUserForm from "../littleComponents/AddUserForm";
@@ -47,10 +48,14 @@ const Employees = () => {
         // Reorder staff list, numerically by ID.
 
         let orderOfIds = [];
-        allStaff.map(item => {
+        allStaff.map(item => (
             orderOfIds.push(parseInt(item._id))
-        })
-        orderOfIds.sort(function(a, b){return a-b});
+        ))
+        orderOfIds.sort(function (a, b) { return a - b });
+        
+        // Get time of last login and calculate time difference with now
+
+        // const nowTime = new Date();
 
         return (
             <>
@@ -65,8 +70,10 @@ const Employees = () => {
                                         <User size={40}/>
                                         <Id>{result._id} {result.username}</Id>
                                         {
-                                            result.password.length < 9 &&
-                                            <Pass>Password insecure</Pass>
+                                            result.lastLogIn &&
+                                            <LastLogIn>
+                                                {formatDistanceToNow(parseISO(result.lastLogIn), {addSuffix: true})}
+                                            </LastLogIn>
                                         }
                                         {
                                             result._id !== user._id &&
@@ -141,7 +148,7 @@ const Id = styled.div`
     margin-top: 10px;
 `
 
-const Pass = styled.div`
+const LastLogIn = styled.div`
     font-style: italic;
 `
 

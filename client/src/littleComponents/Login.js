@@ -12,6 +12,8 @@ const Login = () => {
 
     const [userNameEntered, setUserNameEntered] = useState("");
     const [passwordEntered, setPasswordEntered] = useState("");
+    const [magicWord, setMagicWord] = useState(false);
+    const [falseUser, setFalseUser] = useState(false);
 
     // Update states when user inputs info.
 
@@ -32,15 +34,30 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                localStorage.setItem("user", JSON.stringify(data.result));
-                setUser(data.result);
-                setUpdate(update + 1);
+                if (data.status === 200) {
+                    localStorage.setItem("user", JSON.stringify(data.result));
+                    setUser(data.result);
+                    setUpdate(update + 1);
+                    setMagicWord(false);
+                    setFalseUser(false);
+                } else if (data.status === 401) {
+                    setFalseUser(false);
+                    setMagicWord(true);
+                } else {
+                    setFalseUser(true);
+                    setMagicWord(false);
+                }
             })
-            .catch((err) => console.log("error", err))
+            .catch(err => console.log("error"))
     }
 
     return (
         <Wrapper>
+            {
+                magicWord &&
+                    <ErrorAhAhAh src="images/magic-word.gif" />
+            }
+            
             <LogIn
                 onSubmit={handleLogIn}
                 name="login"
@@ -64,6 +81,10 @@ const Login = () => {
                             onChange={updatePW}
                         />
                     </div>
+                    {
+                        falseUser &&
+                            <UserNotRec>User non-existent.</UserNotRec>
+                    }
                     
                     <button type="submit">Submit</button>
                 </fieldset>
@@ -76,6 +97,19 @@ const Wrapper = styled.div`
     background: url("/images/gates.jpg") center;
     min-height: calc(100vh - 120px);
     position: relative;
+`
+
+const ErrorAhAhAh = styled.img`
+    display: block;
+    margin: 0 auto;
+`
+
+const UserNotRec = styled.div`
+    background-color: var(--c-red);
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 5px;
+    width: fit-content;
 `
 
 const LogIn = styled.form`

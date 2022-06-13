@@ -4,6 +4,8 @@ import { format } from 'date-fns';
 
 const Footer = () => {
 
+    // Fetch the year to avoid paying someone to change the copyright notice on Dec. 31st at 23:59. There's a limit to "spare no expense".
+
     const year = format(new Date(), 'y');
 
     return (

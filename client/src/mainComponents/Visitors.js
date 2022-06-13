@@ -42,7 +42,7 @@ const Visitors = () => {
             <>
                 {
                     closedExhibits === 0
-                        ? <StatusOpen>All sectors operational</StatusOpen>
+                        ? <StatusOpen>All sectors open to visitors</StatusOpen>
                         : <StatusOpen>Sectors closed: {closedExhibits}</StatusOpen>
                 }
                 <main>

@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { DinoContext } from "../DinoContext";
 import ChooseExhibit from "../littleComponents/ChooseExhibit";
 
 const Nav = () => {
 
+    // Get context and state needed for dropdown menu.
+
     const { user } = useContext(DinoContext);
     const [showMenu, setShowMenu] = useState(false);
-
-    const openExhibitMenu = () => setShowMenu(true)
-    const hideExhibitMenu = () => setShowMenu(false)
 
     return (
         <div>
@@ -19,7 +18,7 @@ const Nav = () => {
                 <NavLink to="/" exact={true}>Home</NavLink>
                 <NavLink to="/population">Population</NavLink>
                 <NavLink to="/logs" >Logs</NavLink>
-                <span onMouseEnter={openExhibitMenu} onMouseLeave={hideExhibitMenu}>Habitat info
+                <span onMouseEnter={() => setShowMenu(true)} onMouseLeave={() => setShowMenu(false)}>Habitat info
                     {
                         showMenu &&
                         <ChooseExhibit />

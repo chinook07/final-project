@@ -10,6 +10,8 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 const db = client.db();
 
+const crypto = require("crypto-js");
+
 const openSesame = async () => {
     await client.connect();
     console.log("connected!");
@@ -24,46 +26,77 @@ const logEmployee = async (req, res) => {
 
     await openSesame();
     const { user, password } = req.body;
-    const staff = await db.collection("employees").findOne(
-        { "username": user, "password": password }
-    );
-    console.log(staff);
+
+    let encryptedPass = crypto.AES.encrypt(password, process.env.PASS_SEC).toString();
+    console.log(encryptedPass);
+    const unsecureResult = await db.collection("employees").findOne({ "username": user });
+    console.log("unsecureResult", unsecureResult);
+
+    if (unsecureResult === null) {
+        res.status(404).json({ status: 404, message : `${user} does not match with the current records.`})
+    } else {
+        // Check to see if the password is correct.
+        let decrypted = crypto.AES.decrypt(unsecureResult.password, process.env.PASS_SEC).toString(crypto.enc.Utf8);
+        let staff = {};
+        if (password === decrypted) {
+            const logInTime = new Date();
+            await db.collection("employees").updateOne(unsecureResult, { $set: { "lastLogIn": logInTime } })
+            staff = { _id: unsecureResult._id, username: unsecureResult.username, admin: unsecureResult.admin, lastLogIn: unsecureResult.lastLogIn }
+            res.status(200).json({ status: 200, result : staff, message: `${user} is now logged in.` })
+        } else {
+            res.status(401).json({ status: 401, message : `${user} does not match with the password entered.`})
+        }
+    }
+
     await closeSesame();
-
-    staff
-        ? res.status(200).json({ status: 200, result : staff, message: `${user} is now logged in.` })
-        : res.status(404).json({ status: 404, result : null, message : `${user} does not match with the password entered.`})
-
 }
 
 const getEmployees = async (req, res) => {
 
     await openSesame();
-    const staff = await db.collection("employees").find().toArray();
+    const unsecureResult = await db.collection("employees").find().toArray();
+    let staff = [];
+    unsecureResult.forEach(item => {
+        staff.push({_id : item._id, username: item.username, admin: item.admin, lastLogIn: item.lastLogIn})
+    })
+    listOfUnsecurePasswords = [];
+    unsecureResult.forEach(item => {
+        item.password.length < 9 && 
+            listOfUnsecurePasswords.push(item._id)
+    })
+    staff.forEach(item => {
+        listOfUnsecurePasswords.includes(item._id)
+            ? item.passSecure = false
+            : item.passSecure = true
+    })
     await closeSesame();
 
-    return res.status(200).json({ status: 200, staff, message: "Here are all your employees." });
+    return res.status(200).json({ status: 200, listOfUnsecurePasswords, staff, message: "Here are all your employees." });
 }
 
-const getEmployee = async (req, res) => {
+// const getEmployee = async (req, res) => {
     
-    await openSesame();
-    // TBD
-    await closeSesame();
+//     await openSesame();
+//     // TBD
+//     await closeSesame();
 
-    return res.status(200).json({ status: 200, message: `TBD` });
-}
+//     return res.status(200).json({ status: 200, message: `TBD` });
+// }
 
 const hireEmployee = async (req, res) => {
     
     await openSesame();
     const { _id, username, password, admin } = req.body;
+
+    let encryptedPass = crypto.AES.encrypt(password, process.env.PASS_SEC).toString();
+    // let decrypted = crypto.AES.decrypt(encryptedPass, process.env.PASS_SEC).toString(crypto.enc.Utf8);
+
     await db.collection("employees").insertOne({
-        _id, username, password, admin
+        _id, username, password: encryptedPass, admin
     });
     await closeSesame();
 
-    return res.status(200).json({ status: 200, message: `${username} has been created.` });
+    return res.status(200).json({ status: 200, encryptedPass, decrypted, message: `${username} has been created.` });
 }
 
 const fireEmployee = async (req, res) => {
@@ -79,7 +112,6 @@ const fireEmployee = async (req, res) => {
 module.exports = {
     logEmployee,
     getEmployees,
-    getEmployee,
     hireEmployee,
     fireEmployee
 };

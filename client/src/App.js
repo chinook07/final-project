@@ -21,7 +21,11 @@ import Error from "./mainComponents/Error";
 
 const App = () => {
 
+    // Is there someone logged in? This is important to get from context.
+
     const { user } = useContext(DinoContext);
+
+    // If there isn't, your choices are quite limited.
 
     if (user === null) {
         return (
@@ -43,6 +47,9 @@ const App = () => {
             
         )
     } else {
+
+        // Else, you have access to everything. Notice only admin users have access to the employees page.
+        
         return (
             <BrowserRouter>
                 <GlobalStyles />
@@ -65,9 +72,12 @@ const App = () => {
                         <Route exact path="/visitors">
                             <Visitors />
                         </Route>
-                        <Route exact path="/employees">
-                            <Employees />
-                        </Route>
+                        {
+                            user.admin &&
+                            <Route exact path="/employees">
+                                <Employees />
+                            </Route>
+                        }
                         <Route exact path="/moreinfo">
                             <MoreInfo />
                         </Route>

@@ -53,6 +53,7 @@ const Exhibit = () => {
                     showReq &&
                     <AreYouSure
                         exhibitId={exhibitId}
+                        species={species}
                         closeForm={() => setShowReq(false)}
                     />
                 }

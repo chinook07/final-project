@@ -50,7 +50,9 @@ const Home = () => {
                             <div>{(3.6 * weather.wind.speed).toFixed()} km/h</div>
                         </Weather>
                 }
-                <ParkMap/>
+                <MapBackground>
+                    <ParkMap/>
+                </MapBackground>
             </main>
         </>
     )
@@ -68,6 +70,11 @@ const Weather = styled.div`
 
 const Arrow = styled(ImCompass)`
     transform: rotate(${props => props.angle - 45}deg);
+`
+
+const MapBackground = styled.div`
+    background-color: #161F2E;
+    padding: 0;
 `
 
 export default Home;

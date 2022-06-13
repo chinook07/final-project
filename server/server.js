@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const {
     logEmployee,
     getEmployees,
-    getEmployee,
     hireEmployee,
     fireEmployee
 } = require("./handlers-employees");
@@ -36,11 +35,8 @@ express()
 
     .post("/api/log-employee", logEmployee) //BE √ FE √
     .get("/api/get-employees", getEmployees) //BE √ FE √
-    .get("/api/get-employee/:id", getEmployee) //BE √ useless?
     .post("/api/hire-employee", hireEmployee) //BE √ FE √
     .delete("/api/fire-employee/:id", fireEmployee) //BE √ FE √
-
-    
 
     .get("/api/get-exhibits", getExhibits) //BE √ FE √
     .patch("/api/birth-dino", birthDino) //BE √ FE √

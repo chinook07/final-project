@@ -7,9 +7,11 @@ import { ImExit } from "react-icons/im";
 
 const Header = () => {
 
+    // Get relevant user info from context.
+
     const { user, setUser, update, setUpdate } = useContext(DinoContext);
 
-    // Logging out
+    // Log out and redirect to signin page.
 
     const history = useHistory();
 
@@ -20,7 +22,7 @@ const Header = () => {
         history.push("/")
     }
 
-    // Custom greeting
+    // Fetch custom greeting according to time.
 
     const hour = new Date().getHours();
     let greeting;
