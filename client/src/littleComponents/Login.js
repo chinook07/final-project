@@ -137,9 +137,9 @@ const LogIn = styled.form`
         button {
             background-color: var(--c-dark);
             color: var(--c-light);
+            cursor: pointer;
             margin: 5px auto;
             padding: 10px;
-            
         }
     }
 `

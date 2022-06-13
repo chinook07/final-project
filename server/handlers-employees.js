@@ -74,15 +74,6 @@ const getEmployees = async (req, res) => {
     return res.status(200).json({ status: 200, listOfUnsecurePasswords, staff, message: "Here are all your employees." });
 }
 
-// const getEmployee = async (req, res) => {
-    
-//     await openSesame();
-//     // TBD
-//     await closeSesame();
-
-//     return res.status(200).json({ status: 200, message: `TBD` });
-// }
-
 const hireEmployee = async (req, res) => {
     
     await openSesame();
@@ -96,7 +87,7 @@ const hireEmployee = async (req, res) => {
     });
     await closeSesame();
 
-    return res.status(200).json({ status: 200, encryptedPass, decrypted, message: `${username} has been created.` });
+    return res.status(201).json({ status: 201, encryptedPass, message: `${username} has been created.` });
 }
 
 const fireEmployee = async (req, res) => {

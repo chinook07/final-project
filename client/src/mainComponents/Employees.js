@@ -5,6 +5,7 @@ import { parseISO, formatDistanceToNow } from "date-fns"
 import styled from "styled-components";
 
 import AddUserForm from "../littleComponents/AddUserForm";
+import { AiOutlineFieldTime } from "react-icons/ai"
 import { HiOutlineUserRemove, HiOutlineUserAdd, HiUserCircle } from "react-icons/hi"
 import Spinner from "../littleComponents/Spinner";
 import { DinoContext } from "../DinoContext";
@@ -52,10 +53,6 @@ const Employees = () => {
             orderOfIds.push(parseInt(item._id))
         ))
         orderOfIds.sort(function (a, b) { return a - b });
-        
-        // Get time of last login and calculate time difference with now
-
-        // const nowTime = new Date();
 
         return (
             <>
@@ -71,9 +68,10 @@ const Employees = () => {
                                         <Id>{result._id} {result.username}</Id>
                                         {
                                             result.lastLogIn &&
-                                            <LastLogIn>
-                                                {formatDistanceToNow(parseISO(result.lastLogIn), {addSuffix: true})}
-                                            </LastLogIn>
+                                                <LastLogIn>
+                                                    <AiOutlineFieldTime/>
+                                                    {formatDistanceToNow(parseISO(result.lastLogIn), {addSuffix: true})}
+                                                </LastLogIn>
                                         }
                                         {
                                             result._id !== user._id &&
