@@ -1,3 +1,5 @@
+// This component tracks what is and what isn't open to the public. Also allows user to toggle opening.
+
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -7,7 +9,11 @@ import Spinner from "../littleComponents/Spinner";
 
 const Visitors = () => {
 
-    const { assets, ready, update, setUpdate, vital, setVital } = useContext(DinoContext);
+    // Get all the info via the context file.
+
+    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+
+    // Handle the toggle function.
 
     const turnOnOff = (id) => {
         fetch(`/api/toggle-visitor/${id}`, {
@@ -22,6 +28,8 @@ const Visitors = () => {
     }
 
     if (ready) {
+
+        // Tallies the number of closed sectors, if any.
 
         let closedExhibits = 0;
 

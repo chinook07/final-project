@@ -1,3 +1,5 @@
+// Home page. Enough said.
+
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Spinner from "../littleComponents/Spinner";
@@ -7,12 +9,14 @@ import Vitals from "../littleComponents/Vitals";
 import ParkMap from "../littleComponents/ParkMap";
 import { DinoContext } from "../DinoContext";
 
-
 const Home = () => {
 
-    const { ready } = useContext(DinoContext);
+    // Start with the context and state.
 
+    const { ready } = useContext(DinoContext);
     const [weather, setWeather] = useState({});
+
+    // Get the weather in Cabo Blanco, Costa Rica (in lieue of Isla Nublar).
 
     const getWeather = (key) => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=9.54&lon=-85.11&appid=${key}&units=metric`)
@@ -21,6 +25,8 @@ const Home = () => {
             .catch(err => console.log(err))
     }
 
+    // Get the API weather key when page loads, and then run the above function.
+
     useEffect(() => {
         fetch("/api/get-key")
             .then(res => res.json())
@@ -28,9 +34,7 @@ const Home = () => {
             .catch(err => console.log(err))
     }, [])
 
-    if (!ready) {
-        return <Spinner/>
-    }
+    if (!ready) return <Spinner/>
 
     return (
         <>
@@ -46,7 +50,6 @@ const Home = () => {
                             <div>{(3.6 * weather.wind.speed).toFixed()} km/h</div>
                         </Weather>
                 }
-
                 <ParkMap/>
             </main>
         </>

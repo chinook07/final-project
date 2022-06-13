@@ -1,3 +1,5 @@
+// This function logs all feeding and visiting time of the animals.
+
 import { useContext, useState } from "react";
 import styled from "styled-components";
 
@@ -7,6 +9,8 @@ import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const Logs = () => {
 
+    // Get the context, and the states that will determine what gets shown on the screen.
+
     const { assets, ready } = useContext(DinoContext);
 
     const [minShowF, setMinShowF] = useState(0);
@@ -14,6 +18,8 @@ const Logs = () => {
 
     const [minShowV, setMinShowV] = useState(0);
     const [maxShowV, setMaxShowV] = useState(7);
+
+    // These two functions handle the clicking of the arrows to show previous or later logs.
 
     const showLater = (setMin, setMax, min, max) => {
         if (min > 1) {
@@ -87,7 +93,10 @@ const Logs = () => {
                     <h1>Logs</h1>
                     <LogTree>
                         <h2>Last feeding times</h2>
-                        <AiOutlineUp size={25} onClick={() => showLater(setMinShowF, setMaxShowF, minShowF, maxShowF)}/>
+                        <AiOutlineUp
+                            size={25}
+                            onClick={() => showLater(setMinShowF, setMaxShowF, minShowF, maxShowF)}
+                        />
                         {
                             reOrderedFeedTimes.map((item, index) => {
                                 if (index >= minShowF && index <= maxShowF) {
@@ -100,11 +109,17 @@ const Logs = () => {
                                 }
                             })
                         }
-                        <AiOutlineDown size={25} onClick={() => showEarlier(setMinShowF, setMaxShowF, minShowF, maxShowF, reOrderedFeedTimes.length)}/>
+                        <AiOutlineDown
+                            size={25}
+                            onClick={() => showEarlier(setMinShowF, setMaxShowF, minShowF, maxShowF, reOrderedFeedTimes.length)}
+                        />
                     </LogTree>
                     <LogTree>
                         <h2>Last visiting times</h2>
-                        <AiOutlineUp size={25} onClick={() => showLater(setMinShowV, setMaxShowV, minShowV, maxShowV)}/>
+                        <AiOutlineUp
+                            size={25}
+                            onClick={() => showLater(setMinShowV, setMaxShowV, minShowV, maxShowV)}
+                        />
                         {
                             reOrderedVisitTimes.map((item, index) => {
                                 if (index >= minShowV && index <= maxShowV) {
@@ -118,7 +133,10 @@ const Logs = () => {
                                 }
                             })
                         }
-                        <AiOutlineDown size={25} onClick={() => showEarlier(setMinShowV, setMaxShowV, minShowV, maxShowV, reOrderedVisitTimes.length)}/>
+                        <AiOutlineDown
+                            size={25}
+                            onClick={() => showEarlier(setMinShowV, setMaxShowV, minShowV, maxShowV, reOrderedVisitTimes.length)}
+                        />
                     </LogTree>
                 </Main>
             </>

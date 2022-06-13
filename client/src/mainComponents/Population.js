@@ -1,3 +1,5 @@
+// This component shows the demographics of the park at a glance.
+
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,11 +10,15 @@ import Spinner from "../littleComponents/Spinner";
 
 const Population = () => {
 
+    // Get context and states.
+
+    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+
     const [showForm, setShowForm] = useState(false);
     const [id, setId] = useState();
     const [whichForm, setWhichForm] = useState();
 
-    const { assets, ready, update, setUpdate } = useContext(DinoContext);
+    // Handle the adding of dinos.
 
     const addDino = (item) => {
         fetch(`/api/birth-dino`, {
@@ -27,6 +33,8 @@ const Population = () => {
             .then(() => setUpdate(update + 1))
     }
 
+    // Remove a dino.
+
     const removeDino = (item) => {
         fetch(`/api/death-dino`, {
             method: "PATCH",
@@ -40,6 +48,8 @@ const Population = () => {
             .then(() => setUpdate(update + 1))
     }
 
+    // Show the right form for when user wants to add a log.
+
     const feed = (item) => {
         setShowForm(true);
         setId(item._id);
@@ -52,11 +62,15 @@ const Population = () => {
         setWhichForm("visit");
     }
 
+    // Handle the closing of the form. This function is passed down as a prop to the child component.
+
     const closeForm = () => {
         setShowForm(false)
     }
 
     if (ready) {
+
+        // Count total number of dinos.
         
         let countOfDinos = 0;
         assets.map(element => countOfDinos += element.population)
@@ -65,7 +79,6 @@ const Population = () => {
             <>
                 <TotalCount>Total count of assets: {countOfDinos}</TotalCount>
                 <main>
-                    
                     <h1>Population</h1>
                     {
                         showForm &&
@@ -75,7 +88,6 @@ const Population = () => {
                             closeForm={closeForm}
                         />
                     }
-                    
                     <PopTable>
                         <thead>
                             <tr>
@@ -102,22 +114,16 @@ const Population = () => {
                                             </td>
                                         </tr>
                                     )
-                                    
                                 })
                             }
                         </tbody>
-                </PopTable>
+                    </PopTable>
                 </main>
-                
             </>
         )
     } else {
-
         return <Spinner />
-
     }
-
-
     
 }
 

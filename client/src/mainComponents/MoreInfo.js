@@ -1,3 +1,5 @@
+// A sort of readme file.
+
 import styled from "styled-components";
 
 const MoreInfo = () => {
