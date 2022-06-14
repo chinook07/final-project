@@ -36,7 +36,7 @@ const Header = () => {
 
     return (
         <Wrapper>
-            <HomeLink to="/">Jurassic Park Management</HomeLink>
+            <HomeLink to="/">Jurassic Park Control Console</HomeLink>
             {
                 user !== null
                     ? <LogOutDiv>
