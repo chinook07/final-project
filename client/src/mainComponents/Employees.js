@@ -57,7 +57,7 @@ const Employees = () => {
         return (
             <>
                 <Main>
-                    <h1>JPM Access Profiles</h1>
+                    <h1>JPCC Access Profiles</h1>
                     <Table>
                         {
                             orderOfIds.map((item, index) => {
