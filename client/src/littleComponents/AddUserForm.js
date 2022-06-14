@@ -22,7 +22,7 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
     const updatePass = (e) => setPassEntered(e.target.value);
     const updateAdmin = (e) => setAdminEntered(e.target.checked);
 
-    // Handle adding the employee, with some error validation.
+    // Handle adding the employee, with some error validation for id and password.
 
     const addEmployee = (e) => {
         e.preventDefault();
@@ -32,11 +32,12 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
             return
         }
         if (PassEntered.length < 8 || PassEntered.length > 16) {
-            if (idEntered.length === 3) setShowWarningId(false);
+            setShowWarningId(false);
             setShowWarningPass(true);
             return
         }
         if (CommonPasswords.includes(PassEntered)) {
+            setShowWarningId(false);
             setShowWarningPass(true);
             return
         }
@@ -48,6 +49,12 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
             }
         })
         if (!digitPresent) {
+            setShowWarningId(false);
+            setShowWarningPass(true);
+            return
+        }
+        if (PassEntered === UserEntered) {
+            setShowWarningId(false);
             setShowWarningPass(true);
             return
         }
@@ -73,7 +80,7 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
 
     return (
         <Wrapper onSubmit={addEmployee}>
-            <p>Please fill the following info:</p>
+            <FormTitle>Please fill the following info:</FormTitle>
             <fieldset>
                 <div>
                     <label htmlFor="id">Id</label>
@@ -122,11 +129,19 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
                 </div>
                 {
                     showWarningId &&
-                    <Warning>The ID must match JP ISO 5415-62 norms and be 3 digits in length.</Warning>
+                        <Warning>The ID must match JP ISO 5415-62 norms and be 3 digits in length.</Warning>
                 }
                 {
                     showWarningPass &&
-                    <Warning>Jurassic Park takes cybersecurity seriously. The temporary password must be between 8 and 16 characters in length, contain at least 1 digit, and cannot be a popular one often chosen.</Warning>
+                        <Warning>
+                            <p>Jurassic Park takes cybersecurity seriously. Password requirements:</p>
+                            <ul>
+                                <li>Must be between 8 and 16 characters in length</li>
+                                <li>Must contain at least 1 digit</li>
+                                <li>Cannot be a frequently chosen password</li>
+                                <li>Cannot be the same as the username</li>
+                            </ul>
+                        </Warning>
                 }
                 <div>
                     <button type="button" value="cancel" onClick={exitForm}>Cancel</button>
@@ -139,14 +154,11 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
 
 const Wrapper = styled.form`
     background-color: var(--c-gray);
+    border-radius: 5px;
     left: 50%;
     position: absolute;
     top: 80%;
     transform: translate(-50%, -80%);
-    p {
-        margin-bottom: 10px;
-        text-align: center;
-    }
     fieldset {
         border-color: var(--c-dark);
         padding: 10px;
@@ -171,8 +183,18 @@ const Wrapper = styled.form`
     }
 `
 
+const FormTitle = styled.p`
+    margin-bottom: 10px;
+    text-align: center;
+`
+
 const Warning = styled.div`
     color: var(--c-red);
+    flex-direction: column;
+    ul {
+        list-style-position: inside;
+        margin-top: 5px;
+    }
 `
 
 export default AddUserForm;

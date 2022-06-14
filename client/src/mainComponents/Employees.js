@@ -85,8 +85,8 @@ const Employees = () => {
                                 )
                             })
                         }
-                        <div>
-                            <AddUser size={50} onClick={() => setShowForm(true)} />
+                        <div onClick={() => setShowForm(true)}>
+                            <AddUser size={50} />
                         </div>
                     </Table>
                     {
