@@ -22,8 +22,6 @@ const {
 
 const {
     getVets,
-    getSigns,
-    changeSign,
     getKey
 } = require("./handlers-others")
 
@@ -47,8 +45,6 @@ express()
     .patch("/api/visit/:id", addVisit) //BE √ FE √
 
     .get("/api/get-vets", getVets) //BE √ FE √
-    .get("/api/vital-signs", getSigns) //BE √ FE √
-    .patch("/api/vital-sign/:id", changeSign) //BE √ FE √
     .get("/api/get-key", getKey) //BE √ FE √ → get weather API key
 
     .get("*", (req, res) => {

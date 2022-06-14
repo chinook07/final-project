@@ -1,3 +1,5 @@
+// This file contains all server operations pertaining to the list of habitats and their assets.  First, get Mongo variables.
+
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -10,6 +12,8 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 const db = client.db();
 
+// Use this to connect and disconnect to the database.
+
 const openSesame = async () => {
     await client.connect();
     console.log("connected!");
@@ -19,6 +23,8 @@ const closeSesame = async () => {
     await client.close();
     console.log("disconnected!");
 }
+
+// Here are the actual handlers.
 
 const getExhibits = async (req, res) => {
 
@@ -31,8 +37,9 @@ const getExhibits = async (req, res) => {
 
 const birthDino = async (req, res) => {
     
-    await openSesame();
     const { species, currentNum } = req.body;
+    
+    await openSesame();
     await db.collection("assets").updateOne({species},{$set: {"population" : currentNum + 1}});
     await closeSesame();
 
@@ -41,8 +48,9 @@ const birthDino = async (req, res) => {
 
 const deathDino = async (req, res) => {
 
-    await openSesame();
     const { species, currentNum } = req.body;
+    
+    await openSesame();
     await db.collection("assets").updateOne({species},{$set: {"population" : currentNum - 1}});
     await closeSesame();
 
@@ -51,8 +59,9 @@ const deathDino = async (req, res) => {
 
 const toggleVisitor = async (req, res) => {
 
-    await openSesame();
     const { id } = req.params;
+    
+    await openSesame();
     const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
     toUpdate.currentlyOpenToVisitors
         ? await db.collection("assets").updateOne(toUpdate, { $set: { "currentlyOpenToVisitors": false } })
@@ -66,8 +75,9 @@ const toggleVisitor = async (req, res) => {
 
 const toggleFence = async (req, res) => {
 
-    await openSesame();
     const { id } = req.params;
+    
+    await openSesame();
     const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
     toUpdate.fenceActive
         ? await db.collection("assets").updateOne(toUpdate, { $set: { "fenceActive": false } })
@@ -81,9 +91,10 @@ const toggleFence = async (req, res) => {
 
 const addFeed = async (req, res) => {
 
-    await openSesame();
     const { id } = req.params;
     const { time } = req.body;
+    
+    await openSesame();
     const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
     await db.collection("assets").updateOne(
         toUpdate,
@@ -96,9 +107,10 @@ const addFeed = async (req, res) => {
 
 const addVisit = async (req, res) => {
 
-    await openSesame();
     const { id } = req.params;
     const { time, employee } = req.body;
+    
+    await openSesame();
     const toUpdate = await db.collection("assets").findOne({ _id: parseInt(id) });
     await db.collection("assets").updateOne(
         toUpdate,

@@ -1,3 +1,5 @@
+// This file contains all server operations pertaining to the list of staff. First, get Mongo and Crypto variables.
+
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -12,6 +14,8 @@ const db = client.db();
 
 const crypto = require("crypto-js");
 
+// Use this to connect and disconnect to the database.
+
 const openSesame = async () => {
     await client.connect();
     console.log("connected!");
@@ -22,15 +26,14 @@ const closeSesame = async () => {
     console.log("disconnected!");
 }
 
+// Here are the actual handlers.
+
 const logEmployee = async (req, res) => {
 
-    await openSesame();
     const { user, password } = req.body;
-
-    let encryptedPass = crypto.AES.encrypt(password, process.env.PASS_SEC).toString();
-    console.log(encryptedPass);
+    
+    await openSesame();
     const unsecureResult = await db.collection("employees").findOne({ "username": user });
-    console.log("unsecureResult", unsecureResult);
 
     if (unsecureResult === null) {
         res.status(404).json({ status: 404, message : `${user} does not match with the current records.`})
@@ -76,12 +79,10 @@ const getEmployees = async (req, res) => {
 
 const hireEmployee = async (req, res) => {
     
-    await openSesame();
     const { _id, username, password, admin } = req.body;
-
     let encryptedPass = crypto.AES.encrypt(password, process.env.PASS_SEC).toString();
-    // let decrypted = crypto.AES.decrypt(encryptedPass, process.env.PASS_SEC).toString(crypto.enc.Utf8);
-
+    
+    await openSesame();
     await db.collection("employees").insertOne({
         _id, username, password: encryptedPass, admin
     });
@@ -92,8 +93,9 @@ const hireEmployee = async (req, res) => {
 
 const fireEmployee = async (req, res) => {
 
-    await openSesame();
     const { id } = req.params;
+    
+    await openSesame();
     await db.collection("employees").deleteOne({ _id: id });
     await closeSesame();
 

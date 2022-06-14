@@ -1,3 +1,5 @@
+// Here is all the data you need to run the website. Go to batchImport to actually put it into a database.
+
 const employees = [
     { _id: "4", username : "tsmith", password : "ei8hdinosaur", admin : true},
     { _id: "7", username: "agrant", password: "Zoe1828gregCAT!", admin: true },
@@ -132,13 +134,4 @@ const assets = [
     }
 ]
 
-const vitalSigns = [
-    { _id: 1, name: "Park status", status : true },
-    { _id: 2, name: "Power systems", status : true },
-    { _id: 3, name: "Communication systems", status : true },
-    { _id: 4, name: "Park perimeter fence", status : true },
-    { _id: 5, name: "Habitat fences", status : true },
-    { _id: 6, name: "Park operations", status : true },
-]
-
-module.exports = {employees, assets, vets, vitalSigns}
+module.exports = {employees, assets, vets}

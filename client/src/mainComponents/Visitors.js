@@ -1,4 +1,4 @@
-// This component tracks what is and what isn't open to the public. Also allows user to toggle opening.
+// This component tracks what is and what isn't open to the public. Also allows user to toggle opening of sectors.
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -21,10 +21,7 @@ const Visitors = () => {
             headers: {"Accept": "application/json"}
         })
             .then(res => res.json())
-            .then((data) => {
-                console.log(data)
-                setUpdate(update + 1)
-            })
+            .then(() => setUpdate(update + 1))
     }
 
     if (ready) {
@@ -33,7 +30,7 @@ const Visitors = () => {
 
         let closedExhibits = 0;
 
-        assets.map(element => {
+        assets.forEach(element => {
             if (element.currentlyOpenToVisitors === false) {
                 closedExhibits = closedExhibits + 1;
             }
@@ -46,14 +43,15 @@ const Visitors = () => {
                         : <StatusOpen>Sectors closed: {closedExhibits}</StatusOpen>
                 }
                 <main>
-                    
                     <table>
                         <tbody>
                             {
                                 assets.map((item, index) => {
                                     return (
                                         <TableRow key={index}>
-                                            <td><Link to={`/exhibit/${item._id}`}>{item.name}</Link></td>
+                                            <td>
+                                                <Link to={`/exhibit/${item._id}`}>{item.name}</Link>
+                                            </td>
                                             {
                                                 item.currentlyOpenToVisitors
                                                     ? <Online>Online</Online>
@@ -61,8 +59,12 @@ const Visitors = () => {
                                             }
                                             {
                                                 item.currentlyOpenToVisitors
-                                                    ? <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Shut down</button></ToggleExhibit>
-                                                    : <ToggleExhibit><button onClick={() => {turnOnOff(item._id)}}>Reopen</button></ToggleExhibit>
+                                                    ? <ToggleExhibit>
+                                                        <button onClick={() => { turnOnOff(item._id) }}>Shut down</button>
+                                                    </ToggleExhibit>
+                                                    : <ToggleExhibit>
+                                                        <button onClick={() => { turnOnOff(item._id) }}>Reopen</button>
+                                                    </ToggleExhibit>
                                             }
                                             {
                                                 item.fenceActive

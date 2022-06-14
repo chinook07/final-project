@@ -1,3 +1,5 @@
+// Import the data into a MongoDB database, running node batchImport in the terminal.
+
 const { employees, assets, vets, vitalSigns } = require("./data");
 
 const { MongoClient } = require("mongodb");
@@ -22,7 +24,7 @@ const batchImport = async () => {
         let encryptedPass = crypto.AES.encrypt(item.password, process.env.PASS_SEC).toString();
         secureEmployees.push({_id: item._id, username: item.username, password: encryptedPass, admin: item.admin})
     })
-    await db.collection("employees").insertMany(secureEmployees);
+    // await db.collection("employees").insertMany(secureEmployees);
     // await db.collection("assets").insertMany(assets);
     // await db.collection("vets").insertMany(vets);
     // await db.collection("vitalSigns").insertMany(vitalSigns)

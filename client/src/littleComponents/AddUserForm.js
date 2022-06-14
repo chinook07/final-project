@@ -134,7 +134,7 @@ const AddUserForm = ({ exitForm, updateLocal, setUpdateLocal }) => {
                 {
                     showWarningPass &&
                         <Warning>
-                            <p>Jurassic Park takes cybersecurity seriously. Password requirements:</p>
+                            <p>Jurassic Park spared no expense on cybersecurity. Password requirements:</p>
                             <ul>
                                 <li>Must be between 8 and 16 characters in length</li>
                                 <li>Must contain at least 1 digit</li>

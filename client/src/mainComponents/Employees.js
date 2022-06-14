@@ -46,13 +46,12 @@ const Employees = () => {
 
     if (allStaff.length > 0) {
 
-        // Reorder staff list, numerically by ID.
+        // Parse IDs, reorder staff list, numerically by ID, and put it back into string.
 
-        let orderOfIds = [];
-        allStaff.map(item => (
-            orderOfIds.push(parseInt(item._id))
-        ))
-        orderOfIds.sort(function (a, b) { return a - b });
+        let orderOfIdsParsed = [];
+        allStaff.map(item => orderOfIdsParsed.push(parseInt(item._id)))
+        orderOfIdsParsed.sort(function (a, b) { return a - b });
+        const orderOfIds= orderOfIdsParsed.map(item => item.toString());
 
         return (
             <>
@@ -61,7 +60,7 @@ const Employees = () => {
                     <Table>
                         {
                             orderOfIds.map((item, index) => {
-                                const result = allStaff.find(member => member._id == item);
+                                const result = allStaff.find(member => member._id === item);
                                 return (
                                     <div key={index}>
                                         <User size={40}/>

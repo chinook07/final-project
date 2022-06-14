@@ -2,6 +2,24 @@
 
 Welcome to my bootcamp final project! The summum of all the knowledge aquired during the last 12 weeks has carefully been processed into a full-stack application, using React.js, Node.js, MongoDB, and RESTful APIs.
 
+## How do I setup the React app so I can give it a test run?
+
+You will need to open two terminals, side by side.
+
+### Terminal 1
+
+1. Type `cd server`
+2. Type `yarn install`
+3. Type `yarn start`
+
+### Terminal 2
+
+1. Type `cd client`
+2. Type `yarn install`
+3. Type `yarn start`
+
+Now open your browser on local host 3000 (should be done automatically), and enjoy!
+
 ## What are the features on this website?
 
 Firstly, there are two types of users: regular ones, and those with extra clearance. Only the latter can modify the staff roser, thus hiring or firing employees, and toggle the habitat fences.
@@ -17,6 +35,10 @@ The Logs page is where staff can view all the... logs, chronologically.
 Exhibit info gives some general info about the habitat.
 
 Finally, the Visitors page allows staff to shut off or reopen access to a section deemed unsafe. This info can also be viewed on the home page's interactive map.
+
+## Are the passwords sent over the server in a secure fashion?
+
+Yes. We at Jurassic Park take cybersecurity very seriously since the pre-opening incidents we encountered with an unruly developper. As a result, passwords are encrypted with CryptoJS and are stored as such in the database. The only place where you will see all the raw passwords at once is in the data.js file, which are encrypted when batchImport is run.
 
 ## Is that the actual weather on the home page?
 
