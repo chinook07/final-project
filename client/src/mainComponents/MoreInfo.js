@@ -37,6 +37,10 @@ const MoreInfo = () => {
                     <h2>Isn't this project in bad taste? Weren't people killed in this park due to bad safety mechanisms?</h2>
                     <p>While that is true, I thought it would be honouring <LinkExt href="https://listofdeaths.fandom.com/wiki/Jurassic_Park" target="blank">the victims</LinkExt> to design this application whilst correcting the problems that led to the initial tragedy.</p>
                 </div>
+                <div>
+                    <h2>Which one of the 6 films is your favourite from the franchise?</h2>
+                    <p>At time of upload, I hadn't yet seen Jurassic World 3, Dominion, though I will be correcting that imminently. To this date, my favourite is the first and original Jurassic Park, though I enjoyed all the others.</p>
+                </div>
             </Main>
         </>
     )
