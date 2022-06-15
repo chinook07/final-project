@@ -18,7 +18,17 @@ You will need to open two terminals, side by side.
 2. Type `yarn install`
 3. Type `yarn start`
 
-Now open your browser on local host 3000 (should be done automatically), and enjoy!
+Now open your browser on localhost:3000 (should be done automatically), and enjoy!
+
+## It's not working.
+
+Oh yes, I almost forgot. You'll need to create a .env file, place it in the server folder, and populate it with 3 things:
+
+1. `MONGO_URI` with a key to your MongoDB workspace
+2. `WEATHER_KEY` with a key to the OpenWeatherMap API
+3. `PASS_SEC` with any key you choose in order to "salt" the encrypted passwords.
+
+Now it should work!
 
 ## What are the features on this website?
 

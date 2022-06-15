@@ -25,6 +25,16 @@ const MoreInfo = () => {
                     </ol>
                 </div>
                 <div>
+                    <h2>It's not working.</h2>
+                    <p>Oh yes, I almost forgot. You'll need to create a .env file, place it in the server folder, and populate it with 3 things:</p>
+                    <ol>
+                        <li><Code>MONGO_URI</Code> with a key to your MongoDB workspace</li>
+                        <li><Code>WEATHER_KEY</Code> with a key to the OpenWeatherMap API</li>
+                        <li><Code>PASS_SEC</Code> with any key you choose in order to "salt" the encrypted passwords</li>
+                    </ol>
+                    <p>Now it should work!</p>
+                </div>
+                <div>
                     <h2>What are the features on this website?</h2>
                     <p>Firstly, there are two types of users: regular ones, and those with extra clearance. Only the latter can modify the staff roser, thus hiring or firing employees, and toggle the habitat fences.</p>
                 </div>
