@@ -32,6 +32,7 @@ const MoreInfo = () => {
                         <li><Code>WEATHER_KEY</Code> with a key to the OpenWeatherMap API</li>
                         <li><Code>PASS_SEC</Code> with any key you choose in order to "salt" the encrypted passwords</li>
                     </ol>
+                    <p>You'll also need to run <Code>node batchImport</Code>, with the terminal open in the server folder. This will bring all the data into your own MongoDB environment.</p>
                     <p>Now it should work!</p>
                 </div>
                 <div>

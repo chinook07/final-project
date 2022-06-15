@@ -28,6 +28,8 @@ Oh yes, I almost forgot. You'll need to create a .env file, place it in the serv
 2. `WEATHER_KEY` with a key to the OpenWeatherMap API
 3. `PASS_SEC` with any key you choose in order to "salt" the encrypted passwords.
 
+You'll also need to run `node batchImport`, with the terminal open in the server folder. This will bring all the data into your own MongoDB environment.
+
 Now it should work!
 
 ## What are the features on this website?
