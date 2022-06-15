@@ -94,7 +94,7 @@ const Login = () => {
 }
 
 const Wrapper = styled.div`
-    background: url("/images/gates.jpg") center;
+    background: url("./images/gates.jpg") center;
     min-height: calc(100vh - 120px);
     position: relative;
 `

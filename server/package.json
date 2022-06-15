@@ -7,7 +7,7 @@
         "start": "nodemon server.js",
         "dev:backend": "nodemon server.js"
     },
-    "author": "Scott Morin <scott@journeyedu.co>",
+    "author": "Nicola Z.",
     "license": "MIT",
     "dependencies": {
         "crypto-js": "^4.1.1",
