@@ -4,7 +4,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import {AiOutlineWarning} from "react-icons/ai"
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const AreYouSure = ({ exhibitId, species, closeForm }) => {
 

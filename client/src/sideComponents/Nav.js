@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import ChooseExhibit from "../littleComponents/ChooseExhibit";
 
 const Nav = () => {

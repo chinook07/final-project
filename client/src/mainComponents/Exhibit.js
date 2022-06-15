@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import Spinner from "../littleComponents/Spinner";
 import AreYouSure from "../littleComponents/AreYouSure";
 

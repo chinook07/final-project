@@ -8,7 +8,7 @@ import AddUserForm from "../littleComponents/AddUserForm";
 import { AiOutlineFieldTime } from "react-icons/ai"
 import { HiOutlineUserRemove, HiOutlineUserAdd, HiUserCircle } from "react-icons/hi"
 import Spinner from "../littleComponents/Spinner";
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const Employees = () => {
 

@@ -3,7 +3,7 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import Spinner from "../littleComponents/Spinner";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 

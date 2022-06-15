@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import { MdTour } from "react-icons/md";
 import { BiNoEntry } from "react-icons/bi";
 

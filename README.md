@@ -72,3 +72,34 @@ While that is true, I thought it would be honouring [the victims](https://listof
 ## Which one of the 6 films is your favourite from the franchise?
 
 At time of upload, I hadn't yet seen Jurassic World 3, Dominion, though I will be correcting that imminently. To this date, my favourite is the first and original Jurassic Park, though I enjoyed all the others.
+
+## I'm lost. Is there a component tree where I can see your entire project at a glance?
+
+When you're not logged in:
+
+-   Header
+-   Wrapper
+    -   LogIn
+    -   MoreInfo
+-   Footer
+
+Otherwise:
+
+-   Header
+-   Nav
+    -   ChooseExhibit
+-   Wrapper
+    -   Home
+        -   Vitals
+        -   ParkMap
+    -   Population
+        -   LogForm
+    -   Logs
+    -   Exhibit/1 through Exhibit/6
+        -   AreYouSure (high clearance only)
+    -   Visitors
+    -   Employees (high clearance only)
+        -   AddUserForm
+    -   MoreInfo
+    -   Error
+-   Footer

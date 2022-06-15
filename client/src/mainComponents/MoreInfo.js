@@ -72,6 +72,10 @@ const MoreInfo = () => {
                     <h2>Which one of the 6 films is your favourite from the franchise?</h2>
                     <p>At time of upload, I hadn't yet seen Jurassic World 3, Dominion, though I will be correcting that imminently. To this date, my favourite is the first and original Jurassic Park, though I enjoyed all the others.</p>
                 </div>
+                <div>
+                    <h2>I'm lost. Is there a component tree where I can see your entire project at a glance?</h2>
+                    <p>Yes, please go to <LinkExt href="https://github.com/chinook07/final-project/blob/main/README.md" target="blank">the readme file on the GitHub page</LinkExt>.</p>
+                </div>
             </Main>
         </>
     )

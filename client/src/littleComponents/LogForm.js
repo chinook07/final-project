@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { useEffect, useState, useContext } from "react"
 import { format, compareAsc, parseISO } from 'date-fns';
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const LogForm = ({ id, whichForm, closeForm }) => {
 

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const ChooseExhibit = () => {
 

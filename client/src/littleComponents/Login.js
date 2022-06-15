@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const Login = () => {
 

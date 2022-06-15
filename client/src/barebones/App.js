@@ -1,23 +1,23 @@
 import { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import GlobalStyles from "./barebones/GlobalStyles";
+import GlobalStyles from "./GlobalStyles";
 
 import { DinoContext } from "./DinoContext";
 
-import Header from "./sideComponents/Header"
-import Nav from "./sideComponents/Nav"
-import Footer from "./sideComponents/Footer"
+import Header from "../sideComponents/Header"
+import Nav from "../sideComponents/Nav"
+import Footer from "../sideComponents/Footer"
 
-import Login from "./littleComponents/Login";
-import Home from "./mainComponents/Home";
-import Population from "./mainComponents/Population";
-import Logs from "./mainComponents/Logs";
-import Exhibit from "./mainComponents/Exhibit";
-import Visitors from "./mainComponents/Visitors";
-import Employees from "./mainComponents/Employees";
-import MoreInfo from "./mainComponents/MoreInfo";
-import Error from "./mainComponents/Error";
+import Login from "../littleComponents/Login";
+import Home from "../mainComponents/Home";
+import Population from "../mainComponents/Population";
+import Logs from "../mainComponents/Logs";
+import Exhibit from "../mainComponents/Exhibit";
+import Visitors from "../mainComponents/Visitors";
+import Employees from "../mainComponents/Employees";
+import MoreInfo from "../mainComponents/MoreInfo";
+import Error from "../mainComponents/Error";
 
 const App = () => {
 

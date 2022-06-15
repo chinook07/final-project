@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import LogForm from "../littleComponents/LogForm";
 import Spinner from "../littleComponents/Spinner";
 

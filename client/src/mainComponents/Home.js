@@ -7,7 +7,7 @@ import Spinner from "../littleComponents/Spinner";
 import { ImCompass } from "react-icons/im";
 import Vitals from "../littleComponents/Vitals";
 import ParkMap from "../littleComponents/ParkMap";
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 
 const Home = () => {
 

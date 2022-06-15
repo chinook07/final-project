@@ -1,13 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    /* @font-face {
-        font-family: "JurassicPark";
-        src: url("./barebones/JurassicPark.ttf") format("truetype");
-        font-weight: 300;
-        font-style: normal;
-        font-display: auto;
-    } */
     :root {
         --c-blue: #3F5F8E;
         --c-gray: #292826;
@@ -15,7 +8,6 @@ export default createGlobalStyle`
         --c-dark: #180806;
         --c-yellow: #f0b83e;
         --c-light: #DCD9D2;
-        /* --font-jurassic:  */
     }
     * {
         margin: 0;
@@ -32,7 +24,6 @@ export default createGlobalStyle`
     }
     a {
         text-decoration: none;
-        /* font-family: "JurassicPark"; */
     }
     h1 {
         text-align: center;

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { DinoContext } from "../DinoContext";
+import { DinoContext } from "../barebones/DinoContext";
 import { ImExit } from "react-icons/im";
 
 const Header = () => {
