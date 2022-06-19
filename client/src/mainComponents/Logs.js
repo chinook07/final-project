@@ -29,7 +29,7 @@ const Logs = () => {
     }
 
     const showEarlier = (setMin, setMax, min, max, length) => {
-        if (max < length + 1) {
+        if (max < length) {
             setMin(min + 8)
             setMax(max + 8);
         }
@@ -92,7 +92,11 @@ const Logs = () => {
                 <Main>
                     <h1>Logs</h1>
                     <LogTree>
-                        <h2>Last feeding times</h2>
+                        <DescAndPage>
+                            <p>Page {(maxShowF + 1) / 8}</p>
+                            <h2>Last feeding times</h2>
+                            <p>Page {(maxShowF + 1) / 8}</p>
+                        </DescAndPage>
                         <AiOutlineUp
                             size={25}
                             onClick={() => showLater(setMinShowF, setMaxShowF, minShowF, maxShowF)}
@@ -115,7 +119,11 @@ const Logs = () => {
                         />
                     </LogTree>
                     <LogTree>
-                        <h2>Last visiting times</h2>
+                        <DescAndPage>
+                            <p>Page {(maxShowV + 1) / 8}</p>
+                            <h2>Last visiting times</h2>
+                            <p>Page {(maxShowV + 1) / 8}</p>
+                        </DescAndPage>
                         <AiOutlineUp
                             size={25}
                             onClick={() => showLater(setMinShowV, setMaxShowV, minShowV, maxShowV)}
@@ -154,15 +162,20 @@ const Main = styled.main``
 const LogTree = styled.div`
     border: 1px solid var(--c-yellow);
     margin: 20px 20px 0;
-    h2 {
-        margin-bottom: 10px;
-        text-align: center;
-    }
     svg {
         cursor: pointer;
         display: block;
         margin: 10px auto;
+        &:hover {
+            opacity: 0.5;
+        }
     }
+`
+
+const DescAndPage = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 `
 
 const Log = styled.div`

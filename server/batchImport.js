@@ -24,17 +24,17 @@ const batchImport = async () => {
 
     // Create a new array and put in all the employee data with their encrypted passwords.
 
-    let secureEmployees = [];
-    employees.forEach(item => {
-        let encryptedPass = crypto.AES.encrypt(item.password, process.env.PASS_SEC).toString();
-        secureEmployees.push({_id: item._id, username: item.username, password: encryptedPass, admin: item.admin})
-    })
+    // let secureEmployees = [];
+    // employees.forEach(item => {
+    //     let encryptedPass = crypto.AES.encrypt(item.password, process.env.PASS_SEC).toString();
+    //     secureEmployees.push({_id: item._id, username: item.username, password: encryptedPass, admin: item.admin})
+    // })
 
     // Import the 3 collections of data. If you only need to import one, make sure to comment out the others.
 
-    await db.collection("employees").insertMany(secureEmployees);
+    // await db.collection("employees").insertMany(secureEmployees);
     await db.collection("assets").insertMany(assets);
-    await db.collection("vets").insertMany(vets);
+    // await db.collection("vets").insertMany(vets);
 
     // Disconnect from MongoDB.
 

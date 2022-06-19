@@ -92,7 +92,7 @@ const StatusOpen = styled.aside`
 `
 
 const TableRow = styled.tr`
-    td {
+    td:not(:nth-child(3)) {
         padding: 10px;
         a {
             color: var(--c-light);
@@ -120,7 +120,8 @@ const ToggleExhibit = styled.td`
         border: none;
         color: var(--c-dark);
         cursor: pointer;
-        height: 100%;
+        height: 41px;
+        padding: 0 10px;
         width: 100%;
     }   
 `
