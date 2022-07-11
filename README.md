@@ -40,7 +40,7 @@ Firstly, there are two types of users: regular ones, and those with extra cleara
 
 I was getting there. First, you have the home page which gives you a general look on the park's functional (or dysfunctional) aspects. The interactive map lets you access an exhibit page rapidly to fix a fence breach, shall that situation arise.
 
-On the population page, staff can update the number of dinosaurs based on births and deaths in the park. Logs can also be made to keep track of when and by whom the habitats are visited, as well as when the drones feed the carniverous species who need attention. As a reminder, the vegetarian species don't have a Add feeding time option because they can look after themselves.
+On the population page, staff can update the number of dinosaurs based on births and deaths in the park. Logs can also be made to keep track of when and by whom the habitats are visited, as well as when the drones feed the carniverous species who need attention. As a reminder, the herbivorous species don't have a Add feeding time option because they can look after themselves.
 
 The Logs page is where staff can view all the... logs, chronologically.
 
@@ -58,10 +58,12 @@ Yes. I call an OpenWeatherMap API to get the me the current weather conditions f
 
 ## Can I log in to check out the website?
 
-Sure, how about you free the trex, while you're at it? But serioulsy, I want you to trust this application, and for that, I will trust you with two login accounts:
+Sure, how about you free the trex, while you're at it? But seriously, I want you to trust this application, and for that, I will trust you with two login accounts:
 
 -   Al, password 123, has total security clearance.
 -   Bob, same password, does not.
+
+Note that if you try creating an account with such a weak password, you will get an error.
 
 This will give the possibility to browse as if you were one of the employees using this app on a day-to-day basis.
 
@@ -71,7 +73,7 @@ While that is true, I thought it would be honouring [the victims](https://listof
 
 ## Which one of the 6 films is your favourite from the franchise?
 
-At time of upload, I hadn't yet seen Jurassic World 3, Dominion, though I will be correcting that imminently. To this date, my favourite is the first and original Jurassic Park, though I enjoyed all the others.
+My favourite is the first and original Jurassic Park, though I enjoyed all the others, including the recent one, Dominion.
 
 ## I'm lost. Is there a component tree where I can see your entire project at a glance?
 
